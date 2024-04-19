@@ -11,7 +11,7 @@ Este projeto foi desenvolvido como parte dos requisitos obrigatórios do curso d
  
  
   <h3>Tópicos que serão encontrados nesse repositório<br></h3>
-  • Desenvolvimento Web com PHP;<br>
+  • Desenvolvimento Backend com PHP;<br>
   • Códigos em HTML, CSS e JS;<br>
   • Utilização do Framework Front-End: Bootstrap;<br>
   • Documentação de Software;<br>
