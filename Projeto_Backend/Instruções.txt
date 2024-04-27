@@ -1,0 +1,13 @@
+Para o correto funcionamento do código do protótipo e cadastro das informações contidas no Banco de dados, é necessário que o Banco contenha a seguinte formatação:
+
+1: O nome do banco precisa ser "medcontrol_db", do contrário o código não irá identificar o banco.
+
+2: Durante a criação do Banco, é necessário que os seguintes dados sejam criados:
+    id (bigint com AUTO_INCREMENT), email(tinytext), username(tinytext), pwd(longtext) e date(timestamp com padrão current_timestamp() e com método ON UPDATE CURRENT_TIMESTAMP()).
+
+Não erre nenhuma das letras no processo ou os dados não serão reconhecidos.
+
+3: Tenha a versão PHP8, com apache2 atualizado, Teoricamente deve funcionar em qualquer MySQL, mas para especificar, o banco foi originalmente criado utilizando PHPMYADMIN.
+
+
+OBS: A senha irá estar criptografada no banco, isso é normal por mêtodos de segurança, é possivel descriptografar a senha utilizando Password_Hash ao que ela originalmente era, mas não é necessário.
