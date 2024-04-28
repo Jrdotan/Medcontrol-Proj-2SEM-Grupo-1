@@ -11,3 +11,5 @@ Não erre nenhuma das letras no processo ou os dados não serão reconhecidos.
 
 
 OBS: A senha irá estar criptografada no banco, isso é normal por mêtodos de segurança, é possivel descriptografar a senha utilizando Password_Hash ao que ela originalmente era, mas não é necessário.
+
+OBS2: Para facilitar, adicionei um arquivo contendo o banco de dados do projeto

@@ -9,4 +9,4 @@ session_unset();
 //destruir a sessão atual
 session_destroy();
 
-header("location: index.php?error=none");
+header("location: ../index.php?error=none");
