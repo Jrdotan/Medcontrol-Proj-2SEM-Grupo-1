@@ -1,0 +1,71 @@
+@import url(./mobile.css);
+@import url(./fonts.css);
+@import url(./root.css);
+
+body{
+    background-color: var(--green-body);
+}
+
+.shadow-button{
+    box-shadow: var(--shadow-button);
+}
+.shadow-top{
+    box-shadow: var(--shadow-top);
+}
+
+.size-nav{
+    padding: 18px 44px 18px 44px !important;
+}
+
+.nav-title{
+    color: #193148 !important;
+    line-height: 22px;
+    font-weight: 900;
+    font-size: 24.59px !important;
+}
+
+.nav-link{
+    font-size: 16px;
+    font-weight: bold !important;
+    letter-spacing: -0.3px;
+    color: black !important;
+}
+
+.nav-link:hover{
+    opacity: 0.6 !important;
+}
+
+.active{
+    box-shadow: 0 5px 0px 0 #499903 !important;
+}
+
+.logo{
+    width: 75px;
+    height: 83px;
+}
+
+@media screen and (max-width: 400px) {
+    
+}
+
+
+/* Largura para tela de login */
+@media screen and (max-width: 400px) {
+    /* Largura para tela de login */
+    .col-4 {
+        width: 91.66666667%;
+    }
+    
+    /* Tamanho da Logo */
+    .logo{
+        width: 43px;
+        height: 48px;
+    }
+}
+
+/* Largura para tela de login */
+@media screen and (min-width: 401px) and (max-width: 1200px) {
+    .col-4 {
+        width: calc(33.33333333% + (58.33333334vw - 20vw));
+    }
+}

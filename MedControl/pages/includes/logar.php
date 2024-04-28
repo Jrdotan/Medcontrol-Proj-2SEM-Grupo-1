@@ -8,9 +8,9 @@ if(isset($_POST["submit"])){
     $password_rpt = $_POST["password_rpt"];
     $email = $_POST["email"];
 
-    include("classes/db_classes.php");
-    include("classes/classe_login02.php");
-    include("classes/classe_login01.php");
+    include("../classes/db_classes.php");
+    include("../classes/classe_login02.php");
+    include("../classes/classe_login01.php");
 
     $cadastro = new funcionario($username, $password, $password_rpt, $email);
 
