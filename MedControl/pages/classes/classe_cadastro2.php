@@ -40,6 +40,7 @@ class funcionario extends cadastro_funcionario{
        
 
         $this->set_usuario($this->username, $this->password, $this->email);
+        
     }
 
     private function campo_vazio(){

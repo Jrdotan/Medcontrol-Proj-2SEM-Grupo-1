@@ -7,10 +7,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST["password"];
     $password_rpt = $_POST["password_rpt"];
     $email = $_POST["email"];
-
-    include "classes/db_classes.php";
-    include "classes/classe_cadastro.php";
-    include "classes/classe_cadastro2.php";
+    
+    include "../classes/db_classes.php";
+    include "../classes/classe_cadastro.php";
+    include "../classes/classe_cadastro2.php";
 
     $cadastro = new funcionario($username, $password, $password_rpt, $email);
 

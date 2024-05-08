@@ -1,36 +1,44 @@
 <?php
 
 class controle_login extends login_funcionario{
-    private $username;
+    private $email;
     private $password;
    
 
-    public function __construct($username, $password){
+    public function __construct($email, $password){
         //construtor para propriedades do objeto
         
-        $this->username = $username;
+        $this->email = $email;
         $this->password = $password;
        
     }
 
     public function validar_login_funcionario(){
         if($this->campo_vazio() == false){
-            header("location: ../index.php?error=CampoVazio");
+            header("location: ../login.php?error=CampoVazio");
             exit();
         }
+
+        else{
        
-        $this->set_usuario($this->username, $this->password, $this->email);
+        $this->get_usuario($this->email, $this->password);
+        }
+        return TRUE;
+        
     }
 
     private function campo_vazio(){
         $resultado;
-        if(empty($this->email) || empty($this->username)){
+        if(empty($this->email) || empty($this->password)){
             $resultado = false;
 
         }
-        else{ $resultado = true;
+        else
+        {
+             $resultado = true;
  
     }
     return $resultado;
 }
 }
+?>

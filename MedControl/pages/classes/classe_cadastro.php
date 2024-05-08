@@ -10,7 +10,7 @@ class cadastro_funcionario extends medcontrol_db{
            
         if(!$comandosql->execute(array($username, $cripto_senha, $email))){
            $comandosql = null;
-           header("location: ../index.php?error=comandosqlfalhou");
+           header("location: ../../index.php?error=comandosqlfalhou");
            exit();
         }
         $checar_resultado;
@@ -33,7 +33,7 @@ class cadastro_funcionario extends medcontrol_db{
         
      if(!$comandosql->execute(array($username,$email))){
         $comandosql = null;
-        header("location: ../index.php?error=comandosqlfalhou");
+        header("location: ../../index.php?error=comandosqlfalhou");
         exit();
      }
      $checar_resultado;
