@@ -2,30 +2,27 @@
 session_start();
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $email = $_POST["email"];
+if(isset($_POST["submit"])){
+    $username= $_POST["username"];
     $password = $_POST["password"];
+    $password_rpt = $_POST["password_rpt"];
+    $email = $_POST["email"];
 
-   
-    
-    include "../classes/db_classes.php";
-    include "../classes/classe_login01.php";
-    include "../classes/classe_login02.php";
+    include("../classes/db_classes.php");
+    include("../classes/classe_login02.php");
+    include("../classes/classe_login01.php");
 
-    $logar = new controle_login($email, $password);
+    $cadastro = new funcionario($username, $password, $password_rpt, $email);
 
-    // Lidar com problemas e erros no cadastro
-    $login_status = $logar->validar_login_funcionario();
+//lidar com problemas e erros no cadastro
+    $cadastro->validar_cadastro_funcionario();
 
-    if ($login_status == true) { 
-        header("location: ../../index.php");
-    } else {
-        
-        header("location: ../login.php?error=loginfalhou"); 
-    }
-
+    header("location: index.php?error=none");
 }
 
-?>
+
+
+
+
 
 
