@@ -14,12 +14,18 @@ session_start();
 </head>
 
 <body>
-    <div class="py-4 py-md-5">
+    <div class="py-7 py-md-10">
         <div class="row m-0 justify-content-center">
-            <div class="col-4 py-4 py-md-5 bg-body-tertiary shadow-button">
-                <span class="titulo-login">Fazer Login</span>
-                <form action="./includes/logar.php" method="post">
+            <div class="col-7 py-7 py-md-9 bg-body-tertiary shadow-button">
+                <span class="titulo-login">Fazer Cadastro</span>
+                <form action="./includes/cadastro.php" method="post">
                     <div class="mb-3">
+
+                        <label for="validationTooltipUsername" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="validationTooltipUsername"  aria-describedby="validationTooltipUsernamePrepend" required>
+                        </div>  
+
+                        <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
@@ -27,6 +33,10 @@ session_start();
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Repeat password</label>
+                        <input type="password" name="password_rpt" class="form-control" id="exampleInputPassword1">
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">

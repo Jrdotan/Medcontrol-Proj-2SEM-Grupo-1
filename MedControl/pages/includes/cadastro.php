@@ -9,19 +9,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST["email"];
     
     include "../classes/db_classes.php";
-    include "../classes/classe_cadastro.php";
-    include "../classes/classe_cadastro2.php";
+    include "../classes/Validador_cadastro_funcionario.php";
+    include "../classes/Gestor_cadastro_funcionario.php";
 
     $cadastro = new funcionario($username, $password, $password_rpt, $email);
 
 //lidar com problemas e erros no cadastro
     $cadastro->validar_cadastro_funcionario();
 
-    header("location: index.php");
+    header("location: ../../index.php");
 }
 
 else{
-    header("location: index.php");
+    header("location: ../../index.php");
 }
 
 

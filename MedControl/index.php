@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,12 +24,32 @@
             </button>
             <div class="collapse navbar-collapse flex-grow-0 text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <?php
+                    if(isset($_SESSION["user_id"])){ //checa se sessão foi iniciada
+
+                    ?>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"><?php echo $_SESSION["user_name"]; //Loga com nome de usuário ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
+                </li>
+                <?php
+                    }
+
+                else{
+                    ?>
+                
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Painel Geral</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./pages/login.php">Login</a>
                     </li>
+                <?php
+                }
+                ?>
+
                 </ul>
             </div>
         </div>
