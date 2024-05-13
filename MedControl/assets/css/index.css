@@ -17,11 +17,48 @@ body{
     padding: 18px 44px 18px 44px !important;
 }
 
-.nav-title{
+.nav-title-bold{
     color: #193148 !important;
     line-height: 22px;
     font-weight: 900;
-    font-size: 24.59px !important;
+    font-size: 24.59px;
+}
+
+.nav-title{
+    font-size: 28px;
+    color: #193148 !important;
+    font-weight: normal;
+    /* letter-spacing: 1px */
+}
+
+.nav-title-semi{
+    font-size: 28px;
+    color: #193148 !important;
+    font-weight: 600;
+}
+
+.lb-grey {
+    position: relative;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: normal;
+    letter-spacing: -0.23px;
+    color: var(--subtitle-rodape);
+}
+
+.lb-info {
+    margin: 0 12px;
+    line-height: 19px;
+    font-weight: normal;
+    letter-spacing: -0.23px;
+    color: var(--subtitle-rodape);
+    font-size: 13px !important;
+}
+
+.title-card-md{
+    font-size: 16px;
+    letter-spacing: -0.41px;
+    text-transform: uppercase;
 }
 
 .nav-link{
@@ -31,17 +68,30 @@ body{
     color: black !important;
 }
 
+.data-number{
+    font-size: 27px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: -0.7px;
+    color: var(--color-black);
+    
+}
+
 .nav-link:hover{
     opacity: 0.6 !important;
 }
 
 .active{
-    box-shadow: 0 5px 0px 0 #499903 !important;
+    box-shadow: 0 5px 0px 0 #30b27f !important;
 }
 
 .logo{
     width: 75px;
     height: 83px;
+}
+
+.size-card{
+    width: 880px !important;
 }
 
 @media screen and (max-width: 400px) {
@@ -67,5 +117,11 @@ body{
 @media screen and (min-width: 401px) and (max-width: 1200px) {
     .col-4 {
         width: calc(33.33333333% + (58.33333334vw - 20vw));
+    }
+}
+
+@media screen and (max-width: 1855px){
+    .size-card{
+        width: 100% !important;
     }
 }

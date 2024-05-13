@@ -1,0 +1,43 @@
+.chartMap {
+    height: 500px;
+    overflow: hidden;
+}
+
+#chart_map {
+    width: 6000px;
+    height: 5000px;
+    margin-left: -2797px;
+    margin-top: -2890px;
+}
+
+.google-visualization-tooltip{
+    width: 170px;
+    height: 100px;
+}
+
+.google-visualization-tooltip-item-list
+.google-visualization-tooltip-item:first-child {
+    margin: 0 !important;
+}
+
+@media screen and (max-width: 1855px){
+    .size-card{
+        width: 100% !important;
+    }
+
+
+}
+
+@media screen and (max-width: 1000px){
+    .chartMap {
+        height: 300px !important;
+        overflow: hidden;
+    }
+
+    #chart_map {
+        width: 2300px;
+        height: 1300px;
+        margin-left: -1105px;
+        margin-top: -737px;
+    }
+}
