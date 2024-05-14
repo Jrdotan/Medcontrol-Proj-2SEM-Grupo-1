@@ -19,7 +19,7 @@ session_start();
         <div class="container-fluid">
             <a class="navbar-brand m-0 nav-title-bold" href="#">
                 <img class="logo" src="./assets/img/Logo.svg" alt="Logo" class="d-inline-block">
-                <span>MedControl</span>
+                <span>MedControl</span> 
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
