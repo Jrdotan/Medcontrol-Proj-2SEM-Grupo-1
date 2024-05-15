@@ -45,12 +45,12 @@ session_start();
                         
                         <div class="form-check">
                         <label for="sexo">Sexo: </label><br>
-                            <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" value="masculino" required>
+                            <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" value="M" required>
                             <label class="form-check-label" for="sexoMasculino">Masculino
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="sexo" id="sexoFeminino" value="feminino" required>
+                            <input class="form-check-input" type="radio" name="sexo" id="sexoFeminino" value="F" required>
                             <label class="form-check-label" for="sexoFeminino">Feminino
                             </label>
                             <br><br>

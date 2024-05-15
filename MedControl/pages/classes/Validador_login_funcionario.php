@@ -52,7 +52,7 @@ class login_funcionario extends medcontrol_db{
 
              session_start();
              $_SESSION["user_id"] = $usuario[0]["id"];
-             $_SESSION["user_name"] = $usuario[0]["username"];
+             $_SESSION["user_email"] = $usuario[0]["email"];
              
              $comandosql = null;
         }
