@@ -31,7 +31,7 @@ session_start();
 
                     ?>
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><?php echo $_SESSION["user_name"]; //Loga com nome de usuário ?></a>
+                    <a class="nav-link active" aria-current="page" href="#"><?php echo $_SESSION["user_email"]; //Loga com nome de usuário ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
@@ -46,7 +46,7 @@ session_start();
                         <a class="nav-link active" aria-current="page" href="#">Painel Geral</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./login.php">Login</a>
+                        <a class="nav-link" href="./pages/login.php">Login</a>
                     </li>
                 <?php
                 }
