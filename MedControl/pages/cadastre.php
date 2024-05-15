@@ -11,6 +11,21 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>MedControl</title>
     <link rel="stylesheet" href="../assets/css/login.css">
+    <script>
+        function visualizaCrm(){
+            var cargoSelect = document.getElementById('cargo');
+            var crmField = document.getElementById('crmFiel');
+
+            if(cargoSelect.value === 'medico'){
+                crmField.style.display = 'block';
+            }else{
+                crmField.style.display = 'none';
+            }
+            window.onload = function(){
+                visualizaCrm();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -35,11 +50,15 @@ session_start();
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="cargo">Cargo:</label>
-                        <select id="cargo" name="cargo">
+                        <select id="cargo" name="cargo" class="form-control" onchange="visualizaCrm()">
                             <option value="medico">Médico</option>
                             <option value="funcionario">Funcionário</option>
                         </select>
                     
+                    </div>
+                    <div class="mb-3 col-md-6" id="crmFiel" style="display: none;">
+                    <label for="crm" class="form-label">CRM: </label>
+                    <input type="text" name="crm" class="form-control" id="crm">
                     </div>
                     
                         
