@@ -2,5 +2,6 @@
     --shadow-button: 0 7px 6px 0 rgba(33, 43, 54, 0.04);
     --shadow-top: 0 -7px 6px 0 rgba(33, 43, 54, 0.04);
     --green-body: rgba(10, 225, 171, 0.08);
-    /* --green-body: rgba(10, 225, 171, 0.05); */
+    --color-black: rgb(35, 42, 47);
+    --subtitle-rodape: rgb(132, 152, 174);
 }
