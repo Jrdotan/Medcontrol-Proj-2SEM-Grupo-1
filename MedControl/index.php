@@ -19,7 +19,7 @@ session_start();
         <div class="container-fluid">
             <a class="navbar-brand m-0 nav-title-bold" href="#">
                 <img class="logo" src="./assets/img/Logo.svg" alt="Logo" class="d-inline-block">
-                <span>MedControl</span> 
+                <span>MedControl</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,30 +27,29 @@ session_start();
             <div class="collapse navbar-collapse flex-grow-0 text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php
-                    if(isset($_SESSION["user_id"])){ //checa se sessão foi iniciada
+                    if (isset($_SESSION["user_id"])) { //checa se sessão foi iniciada
 
                     ?>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><?php echo $_SESSION["user_email"]; //Loga com nome de usuário ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
-                </li>
-                <?php
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#"><?php echo $_SESSION["user_email"]; //Loga com nome de usuário 
+                                                                                    ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
+                        </li>
+                    <?php
+                    } else {
+                    ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Painel Geral</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/login.php">Login</a>
+                        </li>
+                    <?php
                     }
-
-                else{
                     ?>
-                
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Painel Geral</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./pages/login.php">Login</a>
-                    </li>
-                <?php
-                }
-                ?>
 
                 </ul>
             </div>
