@@ -1,46 +1,26 @@
 <?php
 
-class cadastro_funcionario extends medcontrol_db{
+class registro_paciente extends medcontrol_db{
 
-    protected function set_usuario($nomeCompleto, $password, $email, $sexo, $idade, $cargo, $cpf, $crm) // Método que insere dados de um cadastro no banco
+    protected function create_paciente($nomePaciente, $idade, $sexo, $cidade, $estado, $cpf, $email, $telefone) // Método que insere dados de um cadastro no banco
     {
       if($crm !=NULL){
-        $comandosql = $this->connect()->prepare('INSERT INTO funcionario (nome, senha, email, sexo, idade, cargo, CPF, CRM) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
+        $comandosql = $this->connect()->prepare('INSERT INTO paciente (nome_completo, idade, sexo, cidade, estado, CPF, email, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
         
         if(!$comandosql) {
          $errorMessage = implode(", ", $this->connect()->errorInfo());
          die("Erro ao preparar a declaração: " . $errorMessage);
      }
  
-        $cripto_senha = password_hash($password, PASSWORD_DEFAULT); //Criptografa senha inserida
            
-        if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $sexo, $idade, $cargo, $cpf, $crm))) //executa instruções
+        if(!$comandosql->execute(array($nomePaciente, $idade, $sexo, $cidade, $estado, $cpf, $email, $telefone))) //executa instruções
         {
            $comandosql = null;
            header("location: ../cadastre.php?error=comandosqlfalhouacima");
            exit();
         }
       }
-      else //roda comando sem CRM para funcionários
-      {
-         $comandosql = $this->connect()->prepare('INSERT INTO funcionario (nome, senha, email, sexo, idade, cargo, CPF) VALUES (?, ?, ?, ?, ?, ?, ?);');
-        
-        if(!$comandosql) {
-         $errorMessage = implode(", ", $this->connect()->errorInfo());
-         die("Erro ao preparar a declaração: " . $errorMessage);
-     }
- 
-        $cripto_senha = password_hash($password, PASSWORD_DEFAULT); //Criptografa senha inserida
-           
-        if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $sexo, $idade, $cargo, $cpf))) //executa instruções
-        {
-           $comandosql = null;
-           header("location: ../cadastre.php?error=comandosqlfalhouacima");
-           exit();
-        }
-
-      }
-
+      
         $checar_resultado;
    
         if($comandosql->rowCount() > 0) //verifica se inserção funcionou
@@ -63,7 +43,7 @@ class cadastro_funcionario extends medcontrol_db{
 
     protected function checar_usuario($nomeCompleto, $email) // Método que checa se dados de funcionário existem no banco
     {
-     $comandosql = $this->connect()->prepare('SELECT nome FROM funcionario WHERE nome = ? OR email = ?;'); 
+     $comandosql = $this->connect()->prepare('SELECT nome FROM paciente WHERE nome_completo = ? OR email = ?;'); 
         
      if(!$comandosql->execute(array($nomeCompleto,$email))){
         $comandosql = null;
@@ -89,5 +69,4 @@ class cadastro_funcionario extends medcontrol_db{
      
     }
 }
-
-
+?>

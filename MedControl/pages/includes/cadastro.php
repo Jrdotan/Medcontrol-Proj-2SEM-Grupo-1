@@ -3,16 +3,21 @@ session_start();
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $username= $_POST["username"];
+    $nomeCompleto= $_POST["nomeCompleto"];
     $password = $_POST["password"];
-    $password_rpt = $_POST["password_rpt"];
+    $senhaRepetida = $_POST["senhaRepetida"];
     $email = $_POST["email"];
-    
+    $sexo = $_POST["sexo"];
+    $idade = $_POST["idade"];
+    $cargo = $_POST["cargo"];
+    $cpf = $_POST["cpf"];
+    $crm = $_POST["crm"];
+
     include "../classes/db_classes.php";
     include "../classes/Validador_cadastro_funcionario.php";
     include "../classes/Gestor_cadastro_funcionario.php";
 
-    $cadastro = new funcionario($username, $password, $password_rpt, $email);
+    $cadastro = new funcionario($nomeCompleto, $password, $senhaRepetida, $email, $sexo, $idade, $cargo, $cpf, $crm);
 
 //lidar com problemas e erros no cadastro
     $cadastro->validar_cadastro_funcionario();

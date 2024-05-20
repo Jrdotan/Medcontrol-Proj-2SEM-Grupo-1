@@ -1,8 +1,23 @@
 @import url(./index.css);
 
-.titulo-login{
+.titulo-login {
     font-size: 16px;
     font-weight: bold !important;
     letter-spacing: -0.3px;
     color: black !important;
+}
+
+.centralized-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-space {
+    margin-bottom: 30px;
+}
+
+.small-footer {
+    padding: 10px 0;
+    font-size: 0.875rem;
 }

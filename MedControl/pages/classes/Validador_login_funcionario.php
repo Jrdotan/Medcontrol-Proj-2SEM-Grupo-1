@@ -2,7 +2,7 @@
 class login_funcionario extends medcontrol_db{
 
     protected function get_usuario($email, $password){
-        $comandosql = $this->connect()->prepare('SELECT pwd from usuario WHERE email = ?;');
+        $comandosql = $this->connect()->prepare('SELECT senha from funcionario WHERE email = ?;');
         
         
            
@@ -20,7 +20,7 @@ class login_funcionario extends medcontrol_db{
 
         $cripto_senha = $comandosql->fetchAll(PDO::FETCH_ASSOC);
         
-        $checar_senha = password_verify($password, $cripto_senha[0]["pwd"]);
+        $checar_senha = password_verify($password, $cripto_senha[0]["senha"]);
          
         
    
@@ -33,9 +33,9 @@ class login_funcionario extends medcontrol_db{
      }
 
         elseif($checar_senha == true){
-            $comandosql = $this->connect()->prepare('SELECT * FROM usuario WHERE email = ? AND pwd = ?;');
+            $comandosql = $this->connect()->prepare('SELECT * FROM funcionario WHERE email = ? AND senha = ?;');
             
-            if(!$comandosql->execute(array($email,  $cripto_senha[0]["pwd"]))){
+            if(!$comandosql->execute(array($email,  $cripto_senha[0]["senha"]))){
                 $comandosql = null;
                 header("location: ../login.php?error=comandosqlfalhou");
                 exit();
@@ -51,8 +51,8 @@ class login_funcionario extends medcontrol_db{
              $usuario = $comandosql->fetchAll(PDO::FETCH_ASSOC);
 
              session_start();
-             $_SESSION["user_id"] = $usuario[0]["id"];
-             $_SESSION["user_name"] = $usuario[0]["username"];
+             $_SESSION["user_id"] = $usuario[0]["ID"];
+             $_SESSION["user_email"] = $usuario[0]["email"];
              
              $comandosql = null;
         }
