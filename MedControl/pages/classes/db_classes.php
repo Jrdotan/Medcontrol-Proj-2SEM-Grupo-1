@@ -1,8 +1,10 @@
 <?php
 
-class medcontrol_db {
+class medcontrol_db
+{
 
-    protected function connect() {
+    protected function connect()
+    {
         try {
             // Variaveis ambientes
             $username = "root";

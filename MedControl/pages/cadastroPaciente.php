@@ -38,28 +38,17 @@ session_start();
     <div class="py-7 py-md-10" id="divCadastro">
         <div class="row m-0 justify-content-center">
             <div class="col-7 py-7 py-md-9 bg-body-tertiary shadow-button">
-                <span class="titulo-login">Cadastre-se</span>
-                <form class="row" action="./includes/cadastro.php" method="post">
+                <span class="titulo-login">Cadastro Paciente</span>
+                <form class="row" action="./includes/paciente.php" method="post">
                     <div class="mb-3 col-md-6">
-                        <label for="nomeCompleto" class="form-label">Nome Completo: </label>
-                        <input type="text" name="nomeCompleto" class="form-control" id="nomeCompleto" required>
+                        <label for="nomePaciente" class="form-label">Nome Completo: </label>
+                        <input type="text" name="nomePaciente" class="form-control" id="nomePaciente" required>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="idade" class="form-label">Idade: </label>
                         <input type="text" name="idade" class="form-control" id="idade" required>
                     </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="cargo">Cargo:</label>
-                        <select id="cargo" name="cargo" class="form-control" onchange="visualizaCrm()">
-                            <option value="funcionario">Funcionário</option>
-                            <option value="medico">Médico</option>
-                        </select>
-
-                    </div>
-                    <div class="mb-3 col-md-6" id="crmFiel" style="display: none;">
-                        <label for="crm" class="form-label">CRM: </label>
-                        <input type="text" name="crm" class="form-control" id="crm">
-                    </div>
+                    
 
 
                     <div class="form-check">
@@ -74,6 +63,14 @@ session_start();
                         </label>
                         <br><br>
                     </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="cidade" class="form-label">Cidade: </label>
+                        <input type="text" name="cidade" class="form-control" id="cidade" required>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="estado" class="form-label">Estado: </label>
+                        <input type="text" name="estado" class="form-control" id="estado" required>
+                    </div>
 
                     <div class="mb-3 col-md-6">
                         <label for="cpf" class="form-label">CPF: </label>
@@ -85,16 +82,8 @@ session_start();
                         <div id="emailHelp" class="form-text">Não compartilhe seu e-mail com mais ninguém.</div>
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="senha" class="form-label">Senha</label>
-                        <input type="password" name="password" class="form-control" id="senha" required>
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="senhaRepetida" class="form-label">Repita a Senha</label>
-                        <input type="password" name="senhaRepetida" class="form-control" id="senhaRepetida" required>
-                    </div>
-                    <div class="mb-3 form-check col-md-6">
-                        <input type="checkbox" class="form-check-input" id="termosCondicioes">
-                        <label class="form-check-label" for="termosCondicoes">Aceito os termos e condições</label>
+                        <label for="telefone" class="form-label">Telefone: </label>
+                        <input type="text" name="telefone" class="form-control" id="telefone" required>
                     </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -103,7 +92,7 @@ session_start();
             </div>
         </div>
     </div>
-    <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary shadow-top ">
+    <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary shadow-top small-footer">
         <div class="row m-0 justify-content-center">
             <div class="col-4 p-0 text-center">
                 <a class="mb-2 text-decoration-none" href="/" aria-label="Bootstrap">

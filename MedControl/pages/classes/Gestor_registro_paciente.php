@@ -1,6 +1,6 @@
 <?php
 
-class controle_paciente{
+class controle_paciente extends registro_paciente{
     private $nomePaciente;
     private $idade;
     private $sexo;
@@ -10,7 +10,7 @@ class controle_paciente{
     private $email;
     private $telefone;
 
-    protected function __construct($nomePaciente, $idade, $sexo, $cidade, $estado, $cpf, $email, $telefone){
+    public function __construct($nomePaciente, $idade, $sexo, $cidade, $estado, $cpf, $email, $telefone){
         $this->nomePaciente = $nomePaciente;
         $this->idade = $idade;
         $this->sexo = $sexo;
@@ -21,22 +21,23 @@ class controle_paciente{
         $this->telefone = $telefone;
     }
 
-    public function validar_cadastro_funcionario() // Valida cadastro se nenhum erro for encontrado no formulário preenchido
+    public function validar_registro_paciente() // Valida cadastro se nenhum erro for encontrado no formulário preenchido
     {
       
         if($this->validar_email() == false){
-            header("location: ../cadastre.php?error=emailinvalido");
+            header("location: ../cadastroPaciente.php?error=emailinvalido");
             exit();
         }
        
         if($this->validar_nome_paciente() == false){
-            header("location: ../cadastre.php?error=nomepacienteemuso");
+            header("location: ../cadastroPaciente.php?error=nomepacienteemuso");
+            exit();
 
         }
        
        
 
-        $this->create_paciente($this->nomeCompleto, $this->password, $this->email, $this->sexo, $this->idade, $this->cargo, $this->cpf, $this->crm); // Executa instruções continas na função para 
+        $this->create_paciente($this->nomePaciente, $this->idade, $this->sexo, $this->cidade, $this->estado, $this->cpf, $this->email, $this->telefone); // Executa instruções continas na função para 
                                                                                                                                  // inserir um usuário no banco
         
     }
@@ -59,7 +60,7 @@ return $resultado;
     private function validar_nome_paciente() // Checa se nome de paciente já existe no Banco
 {
     $resultado;
-    if(!$this->checar_paciente($this->nomeCompleto, $this->email)){
+    if(!$this->checar_paciente($this->nomePaciente, $this->email)){
         $resultado = false;
 
     }
