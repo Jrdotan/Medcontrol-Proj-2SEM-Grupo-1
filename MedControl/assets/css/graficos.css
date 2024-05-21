@@ -3,7 +3,7 @@
     overflow: hidden;
 }
 
-#chart_map {
+#casosConfirmadoMapa, #casosSuspeitosMapa, #obitosConfirmadoMapa {
     width: 6000px;
     height: 5000px;
     margin-left: -2797px;
@@ -24,8 +24,6 @@
     .size-card{
         width: 100% !important;
     }
-
-
 }
 
 @media screen and (max-width: 1000px){
