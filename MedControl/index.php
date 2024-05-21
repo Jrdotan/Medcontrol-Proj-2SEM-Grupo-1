@@ -61,6 +61,40 @@ session_start();
                 <span class="nav-title" style="letter-spacing: -1px;"><span class="nav-title-semi" style="font-size: 28px;">Painel</span> Saúde Pública</span>
                 <p class="lb-grey">Atualizado em: 10/05/2024</p>
             </div>
+            <div class="col text-end">
+                <button type="button" class="btn btn-color shadow-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Filtro de Doenças
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
+                                        <label class="form-check-label" for="firstRadio">First radio</label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
+                                        <label class="form-check-label" for="secondRadio">Second radio</label>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
+                                        <label class="form-check-label" for="thirdRadio">Third radio</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Filtrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4 pb-3">
@@ -220,22 +254,63 @@ session_start();
             </nav>
         </div>
         <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
+        <!-- CASOS CONFIRMADOS DE DOENÇAS -->
         <div class="row pt-5 pb-4">
             <div class="col nav-title-bold">
-                <span class="nav-title active" style="letter-spacing: -1px;"><span class="nav-title-semi" style="font-size: 28px;">Casos</span> Confirmados</span>
+                <span class="nav-title" style="letter-spacing: -1px; box-shadow: 0 5px 0px 0 #30b27f"><span class="nav-title-semi" style="font-size: 28px;">Casos</span> Confirmados</span>
             </div>
         </div>
         <div class="card">
-            <div class="card-body shadow-button" id="graficox"></div>
+            <div class="card-body shadow-button" id="casosConfirmadoX"></div>
         </div>
         <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
         <div class="row pt-3 justify-content-between m-0">
             <div class="card col-md-6 p-0 mt-3 size-card">
-                <div class="card-body" id="graficolinhas"></div>
+                <div class="card-body" id="casosConfirmadoLinhas"></div>
             </div>
             <div class="card col-md-6 p-0 mt-3 size-card">
                 <div class="card-body chartMap">
-                    <div class="col-md-6" id="chart_map"></div>
+                    <div class="col-md-6" id="casosConfirmadoMapa"></div>
+                </div>
+            </div>
+        </div>
+        <!-- CASOS SUSPEITOS DE DOENÇAS -->
+        <div class="row pt-5 pb-4">
+            <div class="col nav-title-bold">
+                <span class="nav-title" style="letter-spacing: -1px; box-shadow: 0 5px 0px 0 #daa520"><span class="nav-title-semi" style="font-size: 28px;">Casos</span> Suspeitos</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body shadow-button" id="casosSuspeitosX"></div>
+        </div>
+        <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
+        <div class="row pt-3 justify-content-between m-0">
+            <div class="card col-md-6 p-0 mt-3 size-card">
+                <div class="card-body" id="casosSuspeitosLinhas"></div>
+            </div>
+            <div class="card col-md-6 p-0 mt-3 size-card">
+                <div class="card-body chartMap">
+                    <div class="col-md-6" id="casosSuspeitosMapa"></div>
+                </div>
+            </div>
+        </div>
+        <!--ÓBITOS CONFIRMADOS -->
+        <div class="row pt-5 pb-4">
+            <div class="col nav-title-bold">
+                <span class="nav-title" style="letter-spacing: -1px; box-shadow: 0 5px 0px 0 #696969"><span class="nav-title-semi" style="font-size: 28px;">Óbitos</span> Confirmados</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body shadow-button" id="obitosConfirmadoX"></div>
+        </div>
+        <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
+        <div class="row pt-3 justify-content-between m-0">
+            <div class="card col-md-6 p-0 mt-3 size-card">
+                <div class="card-body" id="obitosConfirmadoLinhas"></div>
+            </div>
+            <div class="card col-md-6 p-0 mt-3 size-card">
+                <div class="card-body chartMap">
+                    <div class="col-md-6" id="obitosConfirmadoMapa"></div>
                 </div>
             </div>
         </div>
@@ -261,13 +336,34 @@ session_start();
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
     <script type='text/javascript' src="./assets/js/graficos.js"></script>
     <script type='text/javascript'>
-        const mapaDoencas = new MapaGeoChart('chart_map');
-        mapaDoencas.carregarMapa();
+        // Carregar mapas e gráficos relacionados aos casos confirmados
+        const casosConfirmados = {
+            mapa: new MapaGeoChart('casosConfirmadoMapa', 'Contaminados', ['#30b27f', '#78E36D', '#E36D72']),
+            graficoX: new GraficoXChart('casosConfirmadoX', ['#E36D72', '#30b27f']),
+            graficoLinha: new GraficoLinhaChart('casosConfirmadoLinhas')
+        };
+        carregarDados(casosConfirmados);
 
-        const GraficoX = new GraficoXChart('graficox')
-        GraficoX.carregarGraficoX()
+        // Carregar mapas e gráficos relacionados aos casos suspeitos
+        const casosSuspeitos = {
+            mapa: new MapaGeoChart('casosSuspeitosMapa', 'Suspeitos', ['#E36D95', '#daa520']),
+            graficoX: new GraficoXChart('casosSuspeitosX', ['#E36D95', '#daa520']),
+            graficoLinha: new GraficoLinhaChart('casosSuspeitosLinhas')
+        };
+        carregarDados(casosSuspeitos);
 
-        const graficoLinhas = new GraficoLinhaChart('graficolinhas')
-        graficoLinhas.carregarLinhas()
+        // Carregar mapas e gráficos relacionados aos óbitos confirmados
+        const obitosConfirmados = {
+            mapa: new MapaGeoChart('obitosConfirmadoMapa', 'Óbitos', ['#B6B6B6', '#000000']),
+            graficoX: new GraficoXChart('obitosConfirmadoX', ['#B6B6B6', '#000000']),
+            graficoLinha: new GraficoLinhaChart('obitosConfirmadoLinhas')
+        };
+        carregarDados(obitosConfirmados);
+
+        function carregarDados(dados) {
+            dados.mapa.carregarMapa();
+            dados.graficoX.carregarGraficoX();
+            dados.graficoLinha.carregarLinhas();
+        }
     </script>
 </body>

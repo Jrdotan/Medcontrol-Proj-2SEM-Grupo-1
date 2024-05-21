@@ -1,10 +1,12 @@
 class MapaGeoChart {
-    constructor(divId) {
+    constructor(divId, info, colores = ['yellow', 'red']) {
         if (typeof divId !== 'string') {
             throw new Error('O ID do elemento deve ser uma string.');
         }
         this.divId = divId;
         this.tokenApi = 'AIzaSyAN_eSMlZ1bgYk4_yZCY3dVRawj1vL1UHk'
+        this.colores = colores,
+        this.info = info
     }
 
     carregarMapa() {
@@ -26,7 +28,7 @@ class MapaGeoChart {
         var data = google.visualization.arrayToDataTable([
             ['City', 'Contaminados', { role: 'tooltip', 'p': { 'html': true } }],
             ['São Paulo', 5, 'Doença: COVID-19<br>Contaminados: 500'],
-            ['Leme', 1, 'Doença: Dengue<br>Contaminados: 100'],
+            ['Leme', 1, `Doença: Dengue<br>${this.info}: 100`],
             ['Araras', 3, 'Doença: Cancer<br>Contaminados: 300'],
             ['Rio Claro', 2, 'Doença: Morte<br>Contaminados: 250'],
             // Adicione mais cidades conforme necessário
@@ -37,7 +39,7 @@ class MapaGeoChart {
             displayMode: 'markers',
             resolution: 'provinces',
             tooltip: { isHtml: true },
-            colorAxis: { colors: ['yellow', 'red'] },
+            colorAxis: { colors: this.colores },
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById(this.divId));
@@ -51,11 +53,12 @@ class MapaGeoChart {
 
 
 class GraficoXChart {
-    constructor(divId) {
+    constructor(divId, colores = ['yellow', 'red']) {
         if (typeof divId !== 'string') {
             throw new Error('O ID do elemento deve ser uma string.');
         }
         this.divId = divId;
+        this.colores = colores
     }
 
     carregarGraficoX() {
@@ -90,7 +93,7 @@ class GraficoXChart {
         const options = {
             legend: { position: 'top' },
             height: 300,
-            colors: ['#9575cd', '#30b27f'],
+            colors: this.colores,
             hAxis: {
                 title: 'Semana Epidemiológica',
                 titleTextStyle: {
@@ -132,34 +135,22 @@ class GraficoLinhaChart {
 
     drawChart() {
         var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Day');
-        data.addColumn('number', 'Guardians of the Galaxy');
-        data.addColumn('number', 'The Avengers');
-        data.addColumn('number', 'Transformers: Age of Extinction');
+        data.addColumn('string', 'Day');
+        data.addColumn('number', 'Leme');
+        data.addColumn('number', 'Araras');
+        data.addColumn('number', 'Rio Claro');
 
         data.addRows([
-            [1, 37.8, 80.8, 41.8],
-            [2, 30.9, 69.5, 32.4],
-            [3, 25.4, 57, 25.7],
-            [4, 11.7, 18.8, 10.5],
-            [5, 11.9, 17.6, 10.4],
-            [6, 8.8, 13.6, 7.7],
-            [7, 7.6, 12.3, 9.6],
-            [8, 12.3, 29.2, 10.6],
-            [9, 16.9, 42.9, 14.8],
-            [10, 12.8, 30.9, 11.6],
-            [11, 5.3, 7.9, 4.7],
-            [12, 6.6, 8.4, 5.2],
-            [13, 4.8, 6.3, 3.6],
-            [14, 4.2, 6.2, 3.4]
+            ['1', 20, 50, 30],
+            ['2', 10, 50, 50],
+            ['3', 15, 60, 30],
+            ['4', 15, 14, 35],
+            ['5', 15, 14, 35],
+            ['6', 15, 14, 35]
         ]);
 
         const options = {
             legend: { position: 'top' },
-            chart: {
-                title: 'Box Office Earnings in First Two Weeks of Opening',
-                subtitle: 'in millions of dollars (USD)'
-            },
         };
 
         const chart = new google.charts.Line(document.getElementById(this.divId));
