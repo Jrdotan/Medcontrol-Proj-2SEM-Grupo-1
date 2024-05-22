@@ -57,6 +57,18 @@ session_start();
                         <label for="idade" class="form-label">Idade: </label>
                         <input type="text" name="idade" class="form-control" id="idade" required>
                     </div>
+                    <div class="form-check">
+                        <label for="sexo">Sexo: </label><br>
+                        <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" value="M" required>
+                        <label class="form-check-label" for="sexoMasculino">Masculino
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sexo" id="sexoFeminino" value="F" required>
+                        <label class="form-check-label" for="sexoFeminino">Feminino
+                        </label>
+                        <br><br>
+                    </div>
                     <div class="mb-3 col-md-6">
                         <label for="cargo" class="form-label">Cargo:</label>
                         <select id="cargo" name="cargo" class="form-control" onchange="visualizaCrm()">

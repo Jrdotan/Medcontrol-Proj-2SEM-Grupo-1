@@ -17,7 +17,7 @@ class cadastro_funcionario extends medcontrol_db{
         if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $sexo, $idade, $cargo, $cpf, $crm))) //executa instruções
         {
            $comandosql = null;
-           header("location: ../cadastre.php?error=comandosqlfalhouacima");
+           header("location: ../cadastroFuncionario.php?error=comandosqlfalhouacima");
            exit();
         }
       }
@@ -35,7 +35,7 @@ class cadastro_funcionario extends medcontrol_db{
         if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $sexo, $idade, $cargo, $cpf))) //executa instruções
         {
            $comandosql = null;
-           header("location: ../cadastre.php?error=comandosqlfalhouacima");
+           header("location: ../cadastroFuncionario.php?error=comandosqlfalhouacima");
            exit();
         }
 
@@ -47,13 +47,13 @@ class cadastro_funcionario extends medcontrol_db{
         
         {
          $checar_resultado = false;
-         header("location: ../cadastre.php?error=comandosqlfalhou");
+         header("location: ../cadastroFuncionario.php?error=comandosqlfalhou");
          return $checar_resultado;
    
         }
         else{
            $checar_resultado = true;
-           header("location: ../../cadastre.php?error=none");
+           header("location: ../../cadastroFuncionario.php?error=none");
            return $checar_resultado;
         }
    
@@ -67,7 +67,7 @@ class cadastro_funcionario extends medcontrol_db{
         
      if(!$comandosql->execute(array($nomeCompleto,$email))){
         $comandosql = null;
-        header("location: ../cadastre.php?error=zxcomandosqlfalhou");
+        header("location: ../cadastroFuncionario.php?error=zxcomandosqlfalhou");
         exit();
      }
      $checar_resultado;
@@ -76,13 +76,13 @@ class cadastro_funcionario extends medcontrol_db{
      {
 
         $checar_resultado = false;
-        header("location: ../cadastre.php?error=zzcomandosqlfalhou");
+        header("location: ../cadastroFuncionario.php?error=zzcomandosqlfalhou");
         return $checar_resultado;
 
      }
      else{
         $checar_resultado = true;
-        header("location: ../cadastre.php?error=none");
+        header("location: ../cadastroFuncionario.php?error=none");
         return $checar_resultado;
      }
 
