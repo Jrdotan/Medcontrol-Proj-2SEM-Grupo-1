@@ -31,20 +31,20 @@ class funcionario extends cadastro_funcionario
     public function validar_cadastro_funcionario() // Valida cadastro se nenhum erro for encontrado no formulário preenchido
     {
         if ($this->campo_vazio() == false) {
-            header("location: ../cadastre.php?error=campovazio");
+            header("location: ../cadastroFuncionario.php?error=campovazio");
             exit();
         }
 
         if ($this->validar_email() == false) {
-            header("location: ../cadastre.php?error=emailinvalido");
+            header("location: ../cadastroFuncionario.php?error=emailinvalido");
             exit();
         }
         if ($this->validar_senha() == false) {
-            header("location: ../cadastre.php?error=senhainvalida");
+            header("location: ../cadastroFuncionario.php?error=senhainvalida");
             exit();
         }
         if ($this->validar_nome_usuario() == false) {
-            header("location: ../cadastre.php?error=nomeemuso");
+            header("location: ../cadastroFuncionario.php?error=nomeemuso");
             exit();
         }
 
