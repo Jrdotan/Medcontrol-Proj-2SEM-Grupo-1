@@ -7,7 +7,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST["password"];
     $senhaRepetida = $_POST["senhaRepetida"];
     $email = $_POST["email"];
-    $sexo = $_POST["sexo"];
     $idade = $_POST["idade"];
     $cargo = $_POST["cargo"];
     $cpf = $_POST["cpf"];
@@ -17,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     include "../classes/Validador_cadastro_funcionario.php";
     include "../classes/Gestor_cadastro_funcionario.php";
 
-    $cadastro = new funcionario($nomeCompleto, $password, $senhaRepetida, $email, $sexo, $idade, $cargo, $cpf, $crm);
+    $cadastro = new funcionario($nomeCompleto, $password, $senhaRepetida, $email, $idade, $cargo, $cpf, $crm);
 
 //lidar com problemas e erros no cadastro
     $cadastro->validar_cadastro_funcionario();
