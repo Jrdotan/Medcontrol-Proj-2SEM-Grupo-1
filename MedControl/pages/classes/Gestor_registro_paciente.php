@@ -70,36 +70,7 @@ return $resultado;
 return $resultado;
 }
 
-public function ler_pacientes(){
-    try {
-       $database = $this->connect();
-       $sql = "SELECT ID, nome_completo,idade, sexo, cidade, estado, CPF, email, telefone FROM paciente";
-       $result = $database->query($sql);
 
-       if ($result->rowCount() > 0) {
-           while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-
-               echo "
-               <tr>
-                   <td>{$row['ID']}</td>
-                   <td>{$row['nome_completo']}</td>
-                   <td>{$row['idade']}</td>
-                   <td>{$row['sexo']}</td>
-                   <td>{$row['cidade']}</td>
-                   <td>{$row['estado']}</td>
-                   <td>{$row['CPF']}</td>
-                   <td>{$row['email']}</td>
-                   <td>{$row['telefone']}</td>
-               </tr>
-               ";
-           }
-       } else {
-           echo "Nenhum candidato encontrado.";
-       }
-   } catch (PDOException $e) {
-       echo $sql . "<br>" . $e->getMessage();
-   }
-}
 
 }
 ?>

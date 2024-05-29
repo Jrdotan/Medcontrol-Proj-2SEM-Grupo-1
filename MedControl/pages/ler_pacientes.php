@@ -1,8 +1,27 @@
 <?php
-session_start();
-require_once('./classes/db_classes.php');
-require_once('./classes/Validador_registro_paciente.php');
-require_once('./classes/Gestor_registro_paciente.php');
+
+require('./classes/db_classes.php');
+
+try {
+    $database = new medcontrol_db();
+    $dbh = $database->connect();
+    echo "Bem vindo a tela de edição!";
+} catch (PDOException $e) {
+    header("location:index.php");
+    echo "Erro de conexão: " . $e->getMessage();
+}
+
+// Verificar se a conexão foi bem sucedida
+if(!$dbh) {
+    echo "Erro ao conectar ao banco de dados.";
+    exit();
+}
+
+// Consulta SQL para obter os pacientes cadastrados
+$sql = "SELECT ID, nome_completo, idade, sexo, cidade, estado, CPF, email, telefone FROM paciente";
+
+// Executar a consulta
+$result = $dbh->query($sql);
 
 ?>
 
@@ -21,17 +40,42 @@ require_once('./classes/Gestor_registro_paciente.php');
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>idade</th>
-            <th>sexo</th>
-            <th>cidade</th>
-            <th>estado</th>
+            <th>Idade</th>
+            <th>Sexo</th>
+            <th>Cidade</th>
+            <th>Estado</th>
             <th>CPF</th>
-            <th>email</th>
-            <th>telefone</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Métodos</th>
         </tr>
         <?php
-        $cadastro = new controle_paciente($nomePaciente, $idade, $sexo, $cidade, $estado, $cpf, $email, $telefone);
-        $cadastro->ler_pacientes();
+        // Verificar se a consulta retornou resultados
+        if($result && $result->rowCount() > 0) {
+            // Loop através dos resultados e exibir cada paciente em uma linha da tabela
+            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "
+                <tr>
+                    <td>{$row['ID']}</td>
+                    <td>{$row['nome_completo']}</td>
+                    <td>{$row['idade']}</td>
+                    <td>{$row['sexo']}</td>
+                    <td>{$row['cidade']}</td>
+                    <td>{$row['estado']}</td>
+                    <td>{$row['CPF']}</td>
+                    <td>{$row['email']}</td>
+                    <td>{$row['telefone']}</td>
+                    <td>
+                        <a href='editar_pacientes.php?cpf=" . htmlspecialchars($row['CPF']) . "'>editar</a>
+                        <a href='deletar_pacientes.php?cpf=" . htmlspecialchars($row['CPF']) . "'>deletar</a>
+                    </td>
+                </tr>
+                ";
+            }
+        } else {
+            // Se não houver pacientes cadastrados, exibir uma mensagem
+            echo "<tr><td colspan='10'>Nenhum paciente cadastrado.</td></tr>";
+        }
         ?>
     </table>
 

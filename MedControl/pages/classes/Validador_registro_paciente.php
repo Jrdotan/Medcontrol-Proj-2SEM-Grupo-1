@@ -69,6 +69,8 @@ class registro_paciente extends medcontrol_db{
      
     }
 
+    
+
   
 
     }

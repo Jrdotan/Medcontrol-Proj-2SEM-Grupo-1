@@ -3,7 +3,7 @@
 class medcontrol_db
 {
 
-    protected function connect()
+    public function connect()
     {
         try {
             // Variaveis ambientes
