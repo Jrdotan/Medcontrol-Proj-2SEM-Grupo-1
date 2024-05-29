@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once('./pages/classes/db_classes.php');
+require_once('./pages/includes/selects.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,11 +30,12 @@ session_start();
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php
                     if (isset($_SESSION["user_id"])) { //checa se sessão foi iniciada
-
                     ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#"><?php echo $_SESSION["user_email"]; //Loga com nome de usuário 
-                                                                                    ?></a>
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <?php echo $_SESSION["user_email"]; //Loga com nome de usuário 
+                                ?>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
@@ -66,31 +69,25 @@ session_start();
                     Filtro de Doenças
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Filtro de Doenças</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
-                                        <label class="form-check-label" for="firstRadio">First radio</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
-                                        <label class="form-check-label" for="secondRadio">Second radio</label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="thirdRadio">
-                                        <label class="form-check-label" for="thirdRadio">Third radio</label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Filtrar</button>
-                            </div>
+                            <form class="row" action="./includes/cadastro.php" method="post">
+                                <div class="">
+                                    <ul style="height: 500px;" class="modal-body list-group text-start p-0 overflow-auto">
+                                        <?php 
+                                            $cid = new DBSelects();
+                                            $cid->select_all_cids();
+                                        ?>
+                                    </ul>
+                                    <div class="modal-footer p-0 pt-2">
+                                        <button type="submit" class="px-4 btn btn-primary">Filtrar</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
