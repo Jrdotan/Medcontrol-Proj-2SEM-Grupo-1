@@ -66,8 +66,9 @@ $result = $dbh->query($sql);
                     <td>{$row['email']}</td>
                     <td>{$row['telefone']}</td>
                     <td>
-                        <a href='editar_pacientes.php?cpf=" . htmlspecialchars($row['CPF']) . "'>editar</a>
-                        <a href='deletar_pacientes.php?cpf=" . htmlspecialchars($row['CPF']) . "'>deletar</a>
+                        <center>
+                        <a href='prontuario.php?cpf=" . htmlspecialchars($row['CPF']) . "'>criar prontuário</a>
+                        </center>
                     </td>
                 </tr>
                 ";
@@ -80,7 +81,6 @@ $result = $dbh->query($sql);
     </table>
 
     <br>
-    <a href="cadastroPaciente.php">Cadastrar paciente</a><br>
     <a href="../index.php">Voltar</a>
 </body>
 </html>

@@ -2,10 +2,10 @@
 
 class cadastro_funcionario extends medcontrol_db{
 
-    protected function set_usuario($nomeCompleto, $password, $email, $sexo, $idade, $cargo, $cpf, $crm) // Método que insere dados de um cadastro no banco
+    protected function set_usuario($nomeCompleto, $password, $email, $idade, $cargo, $cpf, $crm) // Método que insere dados de um cadastro no banco
     {
       if($crm !=NULL){
-        $comandosql = $this->connect()->prepare('INSERT INTO funcionario (nome, senha, email, sexo, idade, cargo, CPF, CRM) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
+        $comandosql = $this->connect()->prepare('INSERT INTO funcionario (nome, senha, email, idade, cargo, CPF, CRM) VALUES (?, ?, ?, ?, ?, ?, ?);');
         
         if(!$comandosql) {
          $errorMessage = implode(", ", $this->connect()->errorInfo());
@@ -14,7 +14,7 @@ class cadastro_funcionario extends medcontrol_db{
  
         $cripto_senha = password_hash($password, PASSWORD_DEFAULT); //Criptografa senha inserida
            
-        if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $sexo, $idade, $cargo, $cpf, $crm))) //executa instruções
+        if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $idade, $cargo, $cpf, $crm))) //executa instruções
         {
            $comandosql = null;
            header("location: ../cadastroFuncionario.php?error=comandosqlfalhouacima");
@@ -23,7 +23,7 @@ class cadastro_funcionario extends medcontrol_db{
       }
       else //roda comando sem CRM para funcionários
       {
-         $comandosql = $this->connect()->prepare('INSERT INTO funcionario (nome, senha, email, sexo, idade, cargo, CPF) VALUES (?, ?, ?, ?, ?, ?, ?);');
+         $comandosql = $this->connect()->prepare('INSERT INTO funcionario (nome, senha, email, idade, cargo, CPF) VALUES (?, ?, ?, ?, ?, ?);');
         
         if(!$comandosql) {
          $errorMessage = implode(", ", $this->connect()->errorInfo());
@@ -32,7 +32,7 @@ class cadastro_funcionario extends medcontrol_db{
  
         $cripto_senha = password_hash($password, PASSWORD_DEFAULT); //Criptografa senha inserida
            
-        if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $sexo, $idade, $cargo, $cpf))) //executa instruções
+        if(!$comandosql->execute(array($nomeCompleto, $cripto_senha, $email, $idade, $cargo, $cpf))) //executa instruções
         {
            $comandosql = null;
            header("location: ../cadastroFuncionario.php?error=comandosqlfalhouacima");

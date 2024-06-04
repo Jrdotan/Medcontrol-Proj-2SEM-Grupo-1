@@ -44,7 +44,6 @@ CREATE TABLE `funcionario` (
   `email` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `idade` int(11) DEFAULT NULL,
-  `sexo` enum('F','M','Outro') DEFAULT NULL,
   `CPF` varchar(11) NOT NULL,
   `senha` longtext NOT NULL,
   `cargo` varchar(30) DEFAULT NULL,

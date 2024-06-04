@@ -49,11 +49,11 @@ class login_funcionario extends medcontrol_db{
              
 
              $usuario = $comandosql->fetchAll(PDO::FETCH_ASSOC);
-
+            
              session_start();
              $_SESSION["user_id"] = $usuario[0]["ID"];
              $_SESSION["user_email"] = $usuario[0]["email"];
-             
+             $_SESSION["user_crm"] = $usuario[0]["CRM"];
              $comandosql = null;
         }
 

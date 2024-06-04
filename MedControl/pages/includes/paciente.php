@@ -21,11 +21,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 //lidar com problemas e erros no cadastro
     $registro->validar_registro_paciente();
 
-    header("location: ../../index.php");
+    header("Location: ../ler_pacientes.php?error=none");
 }
 
 else{
-    header("location: ../../index.php");
+    header("location: ../ler_pacientes.php?error=cadastropacientefalhou");
 }
 
 

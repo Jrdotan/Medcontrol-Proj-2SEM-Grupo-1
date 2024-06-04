@@ -6,14 +6,13 @@ class funcionario extends cadastro_funcionario
     private $password;
     private $senhaRepetida;
     private $email;
-    private $sexo;
     private $idade;
     private $cargo;
     private $cpf;
     private $crm;
 
 
-    public function __construct($nomeCompleto, $password, $senhaRepetida, $email, $sexo, $idade, $cargo, $cpf, $crm)
+    public function __construct($nomeCompleto, $password, $senhaRepetida, $email, $idade, $cargo, $cpf, $crm)
     {
         //construtor para propriedades do objeto
 
@@ -21,7 +20,6 @@ class funcionario extends cadastro_funcionario
         $this->password = $password;
         $this->senhaRepetida = $senhaRepetida;
         $this->email = $email;
-        $this->sexo = $sexo;
         $this->idade = $idade;
         $this->cargo = $cargo;
         $this->cpf = $cpf;
@@ -49,7 +47,7 @@ class funcionario extends cadastro_funcionario
         }
 
 
-        $this->set_usuario($this->nomeCompleto, $this->password, $this->email, $this->sexo, $this->idade, $this->cargo, $this->cpf, $this->crm); // Executa instruções continas na função para 
+        $this->set_usuario($this->nomeCompleto, $this->password, $this->email, $this->idade, $this->cargo, $this->cpf, $this->crm); // Executa instruções continas na função para 
         // inserir um usuário no banco
 
     }
@@ -57,7 +55,7 @@ class funcionario extends cadastro_funcionario
     private function campo_vazio() //Verifica se existe um campo vazio no formulário
     {
         $resultado;
-        if (empty($this->email) || empty($this->nomeCompleto) || empty($this->password) || empty($this->senhaRepetida) || empty($this->sexo) || empty($this->idade) || empty($this->cargo) || empty($this->cpf)) {
+        if (empty($this->email) || empty($this->nomeCompleto) || empty($this->password) || empty($this->senhaRepetida) || empty($this->idade) || empty($this->cargo) || empty($this->cpf)) {
             $resultado = false;
         } else {
             $resultado = true;

@@ -26,8 +26,8 @@ Nossa iniciativa visa apoiar o terceiro objetivo da Agenda 2030 para o desenvolv
 ## Integrantes do grupo:
 
 
-    > Darlan dos Santos Oliveira Júnior
-    > Felipe Peliçari Candido
-    > Maria Dulce Leão Marcicano
-    > Pedro Rufino da Mata Neto
-    > Stephan Mendes de Oliveira
+  - [Darlan dos Santos Oliveira Júnior](https://github.com/Jrdotan)
+  - [Felipe Peliçari Candido](https://github.com/Felipe-candido)
+  - Maria Dulce Leão Marcicano
+  - [Pedro Rufino da Mata Neto](https://github.com/PedNeto)
+  - [Stephan Mendes de Oliveira](https://github.com/StephanMendes)
