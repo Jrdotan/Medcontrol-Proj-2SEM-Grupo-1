@@ -18,7 +18,15 @@ class DBSelects extends medcontrol_db {
                     $cout ++;
                 }
             } else {
-                echo "Nenhum doença encontrada.";
+                echo '
+                <li class="list-group-item">
+                    <div class="form-check">
+                        <input class="form-check-input" name="" type="radio" name="exampleRadios" id="exampleRadios">
+                        <label class="form-check-label" for="exampleRadios">
+                            Nenhum doença encontrada.
+                        </label>
+                    </div>
+                </li>';
             }
         } catch (PDOException $error){
             echo "Erro na consulta: " . $error->getMessage();
