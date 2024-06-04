@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `mdcontrol_db`
 --
-
+CREATE DATABASE medcontrol_db;
+USE medcontrol_db;
 -- --------------------------------------------------------
 
 --
@@ -74,6 +75,7 @@ CREATE TABLE `paciente` (
 --
 -- Estrutura da tabela `prontuario`
 --
+
 
 CREATE TABLE `prontuario` (
   `ID` int(11) NOT NULL,

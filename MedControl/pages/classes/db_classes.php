@@ -9,7 +9,7 @@ class medcontrol_db
             // Variaveis ambientes
             $username = "root";
             $password = "";
-            $dbh = new PDO('mysql:host=localhost;dbname=mdcontrol_db', $username, $password);
+            $dbh = new PDO('mysql:host=localhost;dbname=medcontrol_db', $username, $password);
         } catch (PDOException $e) {
             // Registra log de erro
             error_log("Erro de conexão: " . $e->getMessage(), 0);
