@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $login_status = $logar->validar_login_funcionario();
 
     if ($login_status == true) { 
-        header("location: ../../index.php");
+        header("location: ../home_pacientes.php");
     } else {
         
         header("location: ../login.php?error=loginfalhou"); 

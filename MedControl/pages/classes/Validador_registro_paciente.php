@@ -16,7 +16,7 @@ class registro_paciente extends medcontrol_db{
         if(!$comandosql->execute(array($nomePaciente, $idade, $sexo, $cidade, $estado, $cpf, $email, $telefone))) //executa instruções
         {
            $comandosql = null;
-           header("location: ../cadastroPaciente.php?error=comandosqlfalhouacima");
+           header("location: home_pacientes.php?error=comandosqlfalhouacima");
            exit();
         }
       
@@ -27,13 +27,13 @@ class registro_paciente extends medcontrol_db{
         
         {
          $checar_resultado = false;
-         header("location: ../cadastroPaciente.php?error=comandosqlfalhou");
+         header("location: home_pacientes.php?error=comandosqlfalhou");
          return $checar_resultado;
    
         }
         else{
            $checar_resultado = true;
-           header("location: ../../cadastroPaciente.php?error=none");
+           header("location: home_pacientes.php?error=none");
            return $checar_resultado;
         }
    
@@ -47,7 +47,7 @@ class registro_paciente extends medcontrol_db{
         
      if(!$comandosql->execute(array($nomePaciente,$email))){
         $comandosql = null;
-        header("location: ../cadastroPaciente.php?error=zxcomandosqlfalhou");
+        header("location: ../home_pacientes.php?error=zxcomandosqlfalhou");
         exit();
      }
      $checar_resultado;
@@ -56,13 +56,12 @@ class registro_paciente extends medcontrol_db{
      {
 
         $checar_resultado = false;
-        header("location: ../cadastroPaciente.php?error=zzcomandosqlfalhou");
         return $checar_resultado;
 
      }
      else{
         $checar_resultado = true;
-        header("location: ../cadastroPaciente.php?error=none");
+        header("location: home_pacientes.php?error=informacaoinvalida");
         return $checar_resultado;
      }
 

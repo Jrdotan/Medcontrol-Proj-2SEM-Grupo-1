@@ -25,12 +25,12 @@ class controle_paciente extends registro_paciente{
     {
       
         if($this->validar_email() == false){
-            header("location: ../cadastroPaciente.php?error=emailinvalido");
+            header("location: home_pacientes.php.php?error=emailinvalido");
             exit();
         }
        
         if($this->validar_nome_paciente() == false){
-            header("location: ../cadastroPaciente.php?error=nomepacienteemuso");
+            header("location: home_pacientes.php?error=nomepacienteemuso");
             exit();
 
         }

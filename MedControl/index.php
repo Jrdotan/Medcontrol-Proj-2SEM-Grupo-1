@@ -28,40 +28,21 @@ require_once('./pages/includes/selects.php');
             </button>
             <div class="collapse navbar-collapse flex-grow-0 text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <?php
-                    if (isset($_SESSION["user_id"]) && $_SESSION["user_crm"] == NULL) { //checa se sessão foi iniciada
+                <?php
+                    if (isset($_SESSION["user_id"])) { //checa se sessão foi iniciada
                     ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
-                                <?php echo $_SESSION["user_email"]; //Loga com nome de usuário 
-                                ?>
-                            </a>
+                            <a class="nav-link active" aria-current="page" href="#">Bem-Vindo <?php echo $_SESSION["user_name"];?>!</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./pages/ler_pacientes.php">Editar Pacientes</a>
+                        <a class="nav-link" href="./pages/home_pacientes.php">Registros de Pacientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
                         </li>
                     <?php
-                    }elseif(isset($_SESSION["user_id"]) && $_SESSION["user_crm"] != NULL) { //checa se sessão foi iniciada
-                        ?>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
-                                    <?php echo $_SESSION["user_email"]; //Loga com nome de usuário 
-                                    ?>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="./pages/medico_ler_pacientes.php">Ler dados de paciente</a>
-                        </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
-                            </li>
-                        <?php
-                    }else {
+                    } else {
                     ?>
-
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Painel Geral</a>
                         </li>
@@ -72,7 +53,6 @@ require_once('./pages/includes/selects.php');
                     <?php
                     }
                     ?>
-
                 </ul>
             </div>
         </div>
