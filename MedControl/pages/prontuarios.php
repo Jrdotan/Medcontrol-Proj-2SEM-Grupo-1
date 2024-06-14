@@ -140,9 +140,46 @@ if (!isset($_GET["id_paciente"])) {
                                     <input type="text" id="nomePaciente" value="<?php echo $_SESSION["nome_paciente"] ?>" class="form-control" disabled>
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label for="Doenca" class="form-label">Doença: </label>
-                                    <input type="text" name="doencaID" id="doencaID" class="form-control" required>
-                                </div>
+                                <label for="doencaID" class="form-label">Doença:</label>
+                                <select name="doencaID" id="doencaID" class="form-select" required>
+                                    <option value="">Selecione uma doença</option>
+                                    <option value="1">Hipertensão essencial</option>
+                                    <option value="2">Diabetes mellitus</option>
+                                    <option value="3">Bronquite N/C como aguda ou crônica</option>
+                                    <option value="4">Pneumonia viral, N/C em outra parte</option>
+                                    <option value="5">Angina pectoris</option>
+                                    <option value="6">Doença respiratória viral N/E</option>
+                                    <option value="7">Doença cardíaca isquêmica crônica</option>
+                                    <option value="8">Outra bactéria N/E como a causa de doenças infecciosas</option>
+                                    <option value="9">Insuficiência cardíaca</option>
+                                    <option value="10">Dengue</option>
+                                    <option value="11">Coronavírus</option>
+                                    <option value="12">Pneumonia N/E</option>
+                                    <option value="13">Gastrite e duodenite</option>
+                                    <option value="14">Transtornos de ansiedade</option>
+                                    <option value="15">Doenças do refluxo gastroesofágico</option>
+                                    <option value="16">Dispepsia</option>
+                                    <option value="17">Doenças renais crônicas</option>
+                                    <option value="18">Insuficiência renal aguda</option>
+                                    <option value="19">Hipertensão renovascular</option>
+                                    <option value="20">Dislipidemia</option>
+                                    <option value="21">Outras doenças pulmonares obstructivas crônicas</option>
+                                    <option value="22">Asma</option>
+                                    <option value="23">Fibrilação e flutter atrial</option>
+                                    <option value="24">Infecções agudas das vias aéreas superiores, N/E</option>
+                                    <option value="25">Síndrome do intestino irritável</option>
+                                    <option value="26">Hiperplasia prostática benigna</option>
+                                    <option value="27">Doenças diverticulares do intestino</option>
+                                    <option value="28">Derrame cerebral não especificado como hemorrágico ou isquêmico</option>
+                                    <option value="29">Outros transtornos nasais precisos</option>
+                                    <option value="30">Íleo paralítico e obstrução intestinal sem hérnia</option>
+                                    <option value="31">Outros transtornos do trato urinário</option>
+                                    <option value="32">Enfisema</option>
+                                    <option value="33">Gastroenterite e colite não infecciosa</option>
+                                    <option value="34">Doenças não reumáticas da válvula aórtica</option>
+                                    <option value="35">Cardiomiopatia</option>
+                                </select>
+                            </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="statusDoenca" class="form-label">Status da Doença:</label>
                                     <select name="statusDoenca" id="statusDoenca" class="form-select" required>
