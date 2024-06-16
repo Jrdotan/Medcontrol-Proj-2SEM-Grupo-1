@@ -351,8 +351,8 @@ class DataGraphic extends medcontrol_db
                         $where_condition
                         AND pr.ID_doenca = :id_doenca
                         AND pr.obito = :statusObito
-                        AND pr.data_diagnostico >= CURDATE() - INTERVAL 1 WEEK
-                        AND pr.data_diagnostico < CURDATE()
+                        AND DATE(pr.data_diagnostico) >= CURDATE() - INTERVAL 1 WEEK
+                        AND DATE(pr.data_diagnostico) <= CURDATE()
                 ) AS novos;
             ");
             

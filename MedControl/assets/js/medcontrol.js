@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var button = event.relatedTarget;
         var action = button.getAttribute('data-action');
         var modalTitle = myModal.querySelector('.modal-title');
-        var doencaInput = myModal.querySelector('input[name="doencaID"]');
+        var doencaInput = myModal.querySelector('select[name="doencaID"]');
         var editInput = myModal.querySelector('input[name="edit"]');
         var statusSelect = myModal.querySelector('select[name="statusDoenca"]');
         var obitoSelect = myModal.querySelector('select[name="obito"]');
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var idadeInput = ModalPaciente.querySelector('input[name="idade"]');
         var sexoInput = ModalPaciente.querySelector('select[name="sexo"]');
         var cidadeInput = ModalPaciente.querySelector('input[name="cidade"]');
-        var estadoInput = ModalPaciente.querySelector('input[name="estado"]');
+        var estadoInput = ModalPaciente.querySelector('select[name="estado"]');
         var cpfInput = ModalPaciente.querySelector('input[name="cpf"]');
         var emailInput = ModalPaciente.querySelector('input[name="email"]');
         var telefoneInput = ModalPaciente.querySelector('input[name="telefone"]');
@@ -124,15 +124,15 @@ document.addEventListener("DOMContentLoaded", function() {
         if (action === 'edit') {
             modalTitle.textContent = 'Editar Paciente';
             btnmodalInput.textContent = 'Salvar Alterações'
+            editInput.value = button.getAttribute('data-id');
             nomePacienteInput.value = button.getAttribute('data-nome');
+            emailInput.value = button.getAttribute('data-email');
             idadeInput.value = button.getAttribute('data-idade');
             sexoInput.value = button.getAttribute('data-sexo');
             cidadeInput.value = button.getAttribute('data-cidade');
             estadoInput.value = button.getAttribute('data-estado');
-            cpfInput.value = button.getAttribute('data-CPF');
-            emailInput.value = button.getAttribute('data-email');
+            cpfInput.value = button.getAttribute('data-cpf');
             telefoneInput.value = button.getAttribute('data-telefone');
-            editInput.value = button.getAttribute('data-id');
         } else {
             modalTitle.textContent = 'Cadastro de Novos Pacientes';
             btnmodalInput.textContent = 'Cadastrar'
