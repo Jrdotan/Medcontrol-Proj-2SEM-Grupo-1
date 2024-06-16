@@ -1,7 +1,11 @@
 <?php
 session_start();
 require_once('./pages/classes/db_classes.php');
-require_once('./pages/includes/selects.php');
+include('./pages/includes/data_grafico.php');
+include('./pages/includes/paginacao.php');
+$person = new DataGraphic();
+$_GET['filterCid'] = isset($_GET['filterCid']) ? $_GET['filterCid'] : 1;
+$_SESSION['filterCid'] = $_GET['filterCid'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,14 +32,14 @@ require_once('./pages/includes/selects.php');
             </button>
             <div class="collapse navbar-collapse flex-grow-0 text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <?php
+                    <?php
                     if (isset($_SESSION["user_id"])) { //checa se sessão foi iniciada
                     ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Bem-Vindo <?php echo $_SESSION["user_name"];?>!</a>
+                            <a class="nav-link active" aria-current="page" href="#">Bem-Vindo <?php echo $_SESSION["user_name"]; ?>!</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="./pages/home_pacientes.php">Registros de Pacientes</a>
+                            <a class="nav-link" href="./pages/home_pacientes.php">Registros de Pacientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./pages/deslogar.php">Deslogar</a>
@@ -46,7 +50,7 @@ require_once('./pages/includes/selects.php');
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Painel Geral</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="./pages/login.php">Login</a>
                         </li>
@@ -61,25 +65,39 @@ require_once('./pages/includes/selects.php');
         <div class="row pt-5 pb-4">
             <div class="col nav-title-bold">
                 <span class="nav-title" style="letter-spacing: -1px;"><span class="nav-title-semi" style="font-size: 28px;">Painel</span> Saúde Pública</span>
-                <p class="lb-grey">Atualizado em: 10/05/2024</p>
+                <p class="lb-grey">Atualizado em: <?php echo date('d/m/Y')?> </p>
             </div>
             <div class="col text-end">
-                <button type="button" class="btn btn-color shadow-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-color shadow-button" data-action="cidsID" data-nome="data-idcid" data-bs-toggle="modal" data-bs-target="#ModalCids">
                     Filtro de Doenças
                 </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ModalCids" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Filtro de Doenças</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form class="row" action="./includes/cadastro.php" method="post">
+                            <form class="row" action="" method="get">
                                 <div class="">
                                     <ul style="height: 500px;" class="modal-body list-group text-start p-0 overflow-auto">
-                                        <?php 
-                                            $cid = new DBSelects();
-                                            $cid->select_all_cids();
+                                        <?php
+                                        $person->select_all_cids();
+                                        ?>
+                                        <?php
+                                            $cids = $person->select_all_cids();
+                                            foreach ($cids as $cid) {
+                                                echo "
+                                                    <li class='list-group-item'>
+                                                        <div class='form-check'>
+                                                            <input class='form-check-input' value='{$cid['ID']}' type='radio' name='filterCid' id='flexRadioDefault1'>
+                                                            <label class='form-check-label' for='flexRadioDefault1'>
+                                                                {$cid['nome']}
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                ";
+                                            }
                                         ?>
                                     </ul>
                                     <div class="modal-footer p-0 pt-2">
@@ -98,14 +116,21 @@ require_once('./pages/includes/selects.php');
                     <div class="card-body shadow-button">
                         <h5 style="color: #30b27f;" class="card-title title-card-md">Casos Confirmados</h5>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <p class="card-text data-number m-0">342.354.354</p>
-                                <p class="lb-grey">Acumulado</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="card-text data-number m-0">3.425</p>
-                                <p class="lb-grey">Casos Novos</p>
-                            </div>
+                            <?php
+                            $casos = $person->total_casos('confirmado', $_GET['filterCid']);
+                            foreach ($casos as $caso) {
+                                echo "
+                                    <div class='col-lg-6'>
+                                        <p class='card-text data-number m-0'>{$caso['total_confirmado']}</p>
+                                        <p class='lb-grey'>Acumulado</p>
+                                    </div>
+                                    <div class='col-lg-6'>
+                                        <p class='card-text data-number m-0'>{$caso['novos_confirmados']}</p>
+                                        <p class='lb-grey'>Casos Novos</p>
+                                    </div>
+                                ";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -115,14 +140,21 @@ require_once('./pages/includes/selects.php');
                     <div class="card-body shadow-button">
                         <h5 style="color: #daa520;" class="card-title title-card-md">Suspeitos</h5>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <p class="card-text data-number m-0">654.987.025</p>
-                                <p class="lb-grey">Casos Suspeitos Acumulado</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="card-text data-number m-0">654</p>
-                                <p class="lb-grey">Novos Casos Suspeitos</p>
-                            </div>
+                        <?php
+                            $casos = $person->total_casos('suspeito', $_GET['filterCid']);
+                            foreach ($casos as $caso) {
+                                echo "
+                                    <div class='col-lg-6'>
+                                        <p class='card-text data-number m-0'>{$caso['total_confirmado']}</p>
+                                        <p class='lb-grey'>Acumulado</p>
+                                    </div>
+                                    <div class='col-lg-6'>
+                                        <p class='card-text data-number m-0'>{$caso['novos_confirmados']}</p>
+                                        <p class='lb-grey'>Casos Novos</p>
+                                    </div>
+                                ";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -132,14 +164,21 @@ require_once('./pages/includes/selects.php');
                     <div class="card-body shadow-button">
                         <h5 style="color: #696969;" class="card-title title-card-md">Óbitos Confirmados</h5>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <p class="card-text data-number m-0">753.159.456</p>
-                                <p class="lb-grey">Óbitos Acumulados</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="card-text data-number m-0">75</p>
-                                <p class="lb-grey">Óbitos Novos</p>
-                            </div>
+                        <?php
+                            $casos = $person->total_casos('todos', $_GET['filterCid']);
+                            foreach ($casos as $caso) {
+                                echo "
+                                    <div class='col-lg-6'>
+                                        <p class='card-text data-number m-0'>{$caso['total_confirmado']}</p>
+                                        <p class='lb-grey'>Acumulado</p>
+                                    </div>
+                                    <div class='col-lg-6'>
+                                        <p class='card-text data-number m-0'>{$caso['novos_confirmados']}</p>
+                                        <p class='lb-grey'>Casos Novos</p>
+                                    </div>
+                                ";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -152,7 +191,7 @@ require_once('./pages/includes/selects.php');
             </div>
         </div>
         <div class="card overflow-x-auto">
-            <table class="card-body table table-striped table-hover">
+            <table class="card-body table table-striped table-hover m-0 table-bordered">
                 <thead>
                     <tr class="">
                         <th class="text-center" scope="col">#</th>
@@ -162,92 +201,32 @@ require_once('./pages/includes/selects.php');
                         <th scope="col">Óbitos</th>
                     </tr>
                 </thead>
-                <tbody class="">
-                    <tr>
-                        <th class="text-center" scope="row">1</th>
-                        <td>São Paulo</td>
-                        <td>10.000</td>
-                        <td>4.500</td>
-                        <td>2.000</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">2</th>
-                        <td>Campinas</td>
-                        <td>7.500</td>
-                        <td>3.500</td>
-                        <td>1.800</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">3</th>
-                        <td>Guarulhos</td>
-                        <td>8.200</td>
-                        <td>3.200</td>
-                        <td>1.500</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">4</th>
-                        <td>São Bernardo do Campo</td>
-                        <td>9.200</td>
-                        <td>6.000</td>
-                        <td>2.400</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">5</th>
-                        <td>Santo André</td>
-                        <td>8.800</td>
-                        <td>3.900</td>
-                        <td>1.700</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">6</th>
-                        <td>Osasco</td>
-                        <td>8.100</td>
-                        <td>2.300</td>
-                        <td>1.200</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">7</th>
-                        <td>Sorocaba</td>
-                        <td>7.800</td>
-                        <td>8.900</td>
-                        <td>4.500</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">8</th>
-                        <td>Ribeirão Preto</td>
-                        <td>8.900</td>
-                        <td>4.700</td>
-                        <td>2.100</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">9</th>
-                        <td>São José dos Campos</td>
-                        <td>9.200</td>
-                        <td>5.400</td>
-                        <td>2.700</td>
-                    </tr>
-                    <tr>
-                        <th class="text-center" scope="row">10</th>
-                        <td>Mauá</td>
-                        <td>7.800</td>
-                        <td>4.600</td>
-                        <td>2.200</td>
-                    </tr>
+                <tbody>
+                    <?php
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $cidades = $person->GraficoLista($_GET['filterCid'], $page);
+                    foreach ($cidades as $cdd) {
+                        echo "
+                        <tr>
+                            <td class='text-center' scope='row'>{$cdd['id']}</td>
+                            <td>{$cdd['cidade']}</td>
+                            <td>{$cdd['total_confirmado']}</td>
+                            <td>{$cdd['total_suspeito']}</td>
+                            <td>{$cdd['total_obitos']}</td>
+                        </tr>
+                        ";
+                    }
+                    ?>
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link">anterior</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Próximo</a>
-                    </li>
+            <tfoot aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-3">
+                    <?php
+                    $total_pages = $person->pagination_casos($_GET['filterCid']);
+                    pagination($total_pages, $page)
+                    ?>
                 </ul>
-            </nav>
+            </tfoot>
         </div>
         <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
         <!-- CASOS CONFIRMADOS DE DOENÇAS -->
@@ -328,31 +307,34 @@ require_once('./pages/includes/selects.php');
             </div>
         </div>
     </footer>
+    <?php date('Y') ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+    <script type="text/javascript" src="./pages/includes/carrega_dados.php"></script>
     <script type='text/javascript' src="./assets/js/graficos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type='text/javascript'>
         // Carregar mapas e gráficos relacionados aos casos confirmados
         const casosConfirmados = {
-            mapa: new MapaGeoChart('casosConfirmadoMapa', 'Contaminados', ['#30b27f', '#78E36D', '#E36D72']),
-            graficoX: new GraficoXChart('casosConfirmadoX', ['#E36D72', '#30b27f']),
-            graficoLinha: new GraficoLinhaChart('casosConfirmadoLinhas')
+            mapa: new MapaGeoChart('casosConfirmadoMapa', jsonDataMapaChartConf, ['#30b27f', '#78E36D', '#E36D72']),
+            graficoX: new GraficoXChart('casosConfirmadoX', jsonDataXChartConf, <?php echo date('Y') ?>, <?php echo date('Y') - 1 ?>, ['#E36D72', '#30b27f']),
+            graficoLinha: new GraficoLinhaChart('casosConfirmadoLinhas', jsonDataLinhaChartConf)
         };
         carregarDados(casosConfirmados);
 
         // Carregar mapas e gráficos relacionados aos casos suspeitos
         const casosSuspeitos = {
-            mapa: new MapaGeoChart('casosSuspeitosMapa', 'Suspeitos', ['#E36D95', '#daa520']),
-            graficoX: new GraficoXChart('casosSuspeitosX', ['#E36D95', '#daa520']),
-            graficoLinha: new GraficoLinhaChart('casosSuspeitosLinhas')
+            mapa: new MapaGeoChart('casosSuspeitosMapa', jsonDataMapaChartSusp, ['#E36D95', '#daa520']),
+            graficoX: new GraficoXChart('casosSuspeitosX', jsonDataXChartSusp, <?php echo date('Y') ?>, <?php echo date('Y') - 1 ?>, ['#E36D95', '#daa520']),
+            graficoLinha: new GraficoLinhaChart('casosSuspeitosLinhas', jsonDataLinhaChartSusp)
         };
         carregarDados(casosSuspeitos);
 
         // Carregar mapas e gráficos relacionados aos óbitos confirmados
         const obitosConfirmados = {
-            mapa: new MapaGeoChart('obitosConfirmadoMapa', 'Óbitos', ['#B6B6B6', '#000000']),
-            graficoX: new GraficoXChart('obitosConfirmadoX', ['#B6B6B6', '#000000']),
-            graficoLinha: new GraficoLinhaChart('obitosConfirmadoLinhas')
+            mapa: new MapaGeoChart('obitosConfirmadoMapa', jsonDataMapaChartAll, ['#B6B6B6', '#000000']),
+            graficoX: new GraficoXChart('obitosConfirmadoX', jsonDataXChartAll, <?php echo date('Y') ?>, <?php echo date('Y') - 1 ?>, ['#B6B6B6', '#000000']),
+            graficoLinha: new GraficoLinhaChart('obitosConfirmadoLinhas', jsonDataLinhaChartAll)
         };
         carregarDados(obitosConfirmados);
 
