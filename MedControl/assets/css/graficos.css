@@ -10,16 +10,6 @@
     margin-top: -2890px;
 }
 
-.google-visualization-tooltip{
-    width: 170px;
-    height: 100px;
-}
-
-.google-visualization-tooltip-item-list
-.google-visualization-tooltip-item:first-child {
-    margin: 0 !important;
-}
-
 @media screen and (max-width: 1855px){
     .size-card{
         width: 100% !important;
