@@ -31,7 +31,6 @@ class MapaGeoChart {
         
         for (var i = 0; i < this.jsonDataMapaChart.length; i++) {
             var tooltip = 'Doença: ' + this.jsonDataMapaChart[i].doenca + '<br>' + this.jsonDataMapaChart[i].Infoadicional;
-            console.log(tooltip);
             dataArray.push([this.jsonDataMapaChart[i].cidade, parseInt(this.jsonDataMapaChart[i].contaminados), tooltip]);
         }
 

@@ -82,9 +82,6 @@ $_SESSION['filterCid'] = $_GET['filterCid'];
                                 <div class="">
                                     <ul style="height: 500px;" class="modal-body list-group text-start p-0 overflow-auto">
                                         <?php
-                                        $person->select_all_cids();
-                                        ?>
-                                        <?php
                                             $cids = $person->select_all_cids();
                                             foreach ($cids as $cid) {
                                                 echo "
