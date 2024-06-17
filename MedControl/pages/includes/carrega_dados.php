@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: text/javascript; charset=UTF-8');
 
 include('../classes/db_classes.php');
-include('./data_grafico.php');
+include('../classes/data_grafico.php');
 $dataClass = new DataGraphic();
 $id_doenca = $_SESSION['filterCid'];
 
