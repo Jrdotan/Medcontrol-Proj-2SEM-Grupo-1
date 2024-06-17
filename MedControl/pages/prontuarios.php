@@ -2,8 +2,8 @@
 session_start();
 require_once('auth.php');
 require_once('./classes/db_classes.php');
-require_once('./includes/crud_medcontrol.php');
-include('./includes/data_grafico.php');
+require_once('./classes/crud_medcontrol.php');
+include('./classes/data_grafico.php');
 include('./includes/prontuario.php');
 include('./includes/paginacao.php');
 $person = new PacienteQuerys();
