@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('auth.php');
 require './classes/db_classes.php';
 require './classes/Validador_registro_paciente.php';
 require './classes/Gestor_registro_paciente.php';

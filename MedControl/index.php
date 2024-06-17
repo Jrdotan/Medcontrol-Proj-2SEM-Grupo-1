@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('./pages/classes/db_classes.php');
-include('./pages/includes/data_grafico.php');
+include('./pages/classes/data_grafico.php');
 include('./pages/includes/paginacao.php');
 $person = new DataGraphic();
 $_GET['filterCid'] = isset($_GET['filterCid']) ? $_GET['filterCid'] : 1;
