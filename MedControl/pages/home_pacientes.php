@@ -1,9 +1,10 @@
 <?php
 session_start();
+require_once('auth.php');
 require_once('./classes/db_classes.php');
 require_once("./classes/Validador_registro_paciente.php");
 require_once("./classes/Gestor_registro_paciente.php");
-require_once('./includes/crud_medcontrol.php');
+require_once('./classes/crud_medcontrol.php');
 include('./includes/paciente.php');
 include('./includes/paginacao.php');
 $person = new PacienteQuerys();
