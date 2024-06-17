@@ -2,8 +2,10 @@
 session_start();
 require_once('./classes/db_classes.php');
 require_once('./includes/crud_medcontrol.php');
+include('./includes/data_grafico.php');
 include('./includes/prontuario.php');
 include('./includes/paginacao.php');
+$person = new PacienteQuerys();
 $msg = salvar_prontuario();
 
 if (!isset($_GET["id_paciente"])) {
@@ -98,14 +100,21 @@ if (!isset($_GET["id_paciente"])) {
                     <div class="card-body text-center shadow-button">
                         <h5 style="color: #30b27f;" class="card-title title-card-md">Quantidade de Prontuarios</h5>
                         <div class="row">
-                            <div class="col-lg-6 mt-2">
-                                <p class="card-text data-number m-0">34</p>
-                                <p class="lb-grey m-0">Acumulado</p>
-                            </div>
-                            <div class="col-lg-6 mt-2">
-                                <p class="card-text data-number m-0">3</p>
-                                <p class="lb-grey m-0">Novos Registros</p>
-                            </div>
+                        <?php
+                            $totais = $person->registros_total_pessoas_prontuario('prontuario', $_SESSION["id_paciente"]);
+                            foreach ($totais as $total) {
+                                echo "
+                                    <div class='col-lg-6 mt-2'>
+                                        <p class='card-text data-number m-0'>{$total['total_prontuario']}</p>
+                                        <p class='lb-grey m-0'>Acumulado</p>
+                                    </div>
+                                    <div class='col-lg-6 mt-2'>
+                                        <p class='card-text data-number m-0'>{$total['novos_prontuario']}</p>
+                                        <p class='lb-grey m-0'>Novos Registros</p>
+                                    </div>
+                                ";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -143,41 +152,15 @@ if (!isset($_GET["id_paciente"])) {
                                 <label for="doencaID" class="form-label">Doença:</label>
                                 <select name="doencaID" id="doencaID" class="form-select" required>
                                     <option value="">Selecione uma doença</option>
-                                    <option value="1">Hipertensão essencial</option>
-                                    <option value="2">Diabetes mellitus</option>
-                                    <option value="3">Bronquite N/C como aguda ou crônica</option>
-                                    <option value="4">Pneumonia viral, N/C em outra parte</option>
-                                    <option value="5">Angina pectoris</option>
-                                    <option value="6">Doença respiratória viral N/E</option>
-                                    <option value="7">Doença cardíaca isquêmica crônica</option>
-                                    <option value="8">Outra bactéria N/E como a causa de doenças infecciosas</option>
-                                    <option value="9">Insuficiência cardíaca</option>
-                                    <option value="10">Dengue</option>
-                                    <option value="11">Coronavírus</option>
-                                    <option value="12">Pneumonia N/E</option>
-                                    <option value="13">Gastrite e duodenite</option>
-                                    <option value="14">Transtornos de ansiedade</option>
-                                    <option value="15">Doenças do refluxo gastroesofágico</option>
-                                    <option value="16">Dispepsia</option>
-                                    <option value="17">Doenças renais crônicas</option>
-                                    <option value="18">Insuficiência renal aguda</option>
-                                    <option value="19">Hipertensão renovascular</option>
-                                    <option value="20">Dislipidemia</option>
-                                    <option value="21">Outras doenças pulmonares obstructivas crônicas</option>
-                                    <option value="22">Asma</option>
-                                    <option value="23">Fibrilação e flutter atrial</option>
-                                    <option value="24">Infecções agudas das vias aéreas superiores, N/E</option>
-                                    <option value="25">Síndrome do intestino irritável</option>
-                                    <option value="26">Hiperplasia prostática benigna</option>
-                                    <option value="27">Doenças diverticulares do intestino</option>
-                                    <option value="28">Derrame cerebral não especificado como hemorrágico ou isquêmico</option>
-                                    <option value="29">Outros transtornos nasais precisos</option>
-                                    <option value="30">Íleo paralítico e obstrução intestinal sem hérnia</option>
-                                    <option value="31">Outros transtornos do trato urinário</option>
-                                    <option value="32">Enfisema</option>
-                                    <option value="33">Gastroenterite e colite não infecciosa</option>
-                                    <option value="34">Doenças não reumáticas da válvula aórtica</option>
-                                    <option value="35">Cardiomiopatia</option>
+                                    <?php 
+                                        $classGrap = new DataGraphic();
+                                        $cids = $classGrap->select_all_cids();
+                                        foreach ($cids as $cid) {
+                                            echo "
+                                                <option value='{$cid['ID']}'>{$cid['nome']}</option>
+                                            ";
+                                        }
+                                    ?>
                                 </select>
                             </div>
                                 <div class="mb-3 col-md-6">
@@ -223,7 +206,6 @@ if (!isset($_GET["id_paciente"])) {
                 <tbody>
                     <?php
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $person = new PacienteQuerys();
                     $prontuarios = $person->select_all_prontuarios($_SESSION["id_paciente"], $page);
                     $medicos = '';
                     foreach ($prontuarios as $prontuario) {
@@ -231,7 +213,7 @@ if (!isset($_GET["id_paciente"])) {
                             if (!is_null($_SESSION["user_crm"])) {
                                 $medicos = "
                                     <td class='text-center'>
-                                        <button type='button' class='btn btn-link p-0 mx-3 editar-pront' data-bs-toggle='modal' data-bs-target='#myModal' data-action='edit' data-id='{$prontuario['ID']}' data-nome='{$prontuario['nome_completo']}' data-doenca='{$prontuario['doenca']}' data-status='{$prontuario['status_diagnostico']}' data-obito='{$prontuario['obito']}'>
+                                        <button type='button' class='btn btn-link p-0 mx-3 editar-pront' data-bs-toggle='modal' data-bs-target='#myModal' data-action='edit' data-id='{$prontuario['ID']}' data-nome='{$prontuario['nome_completo']}' data-doenca='{$prontuario['doencaIDs']}' data-status='{$prontuario['status_diagnostico']}' data-obito='{$prontuario['obito']}'>
                                             <img src='../assets/img/icons/pen-to-square-solid.svg' width='20px' alt='EditarProntuario'>
                                         </button>
                                     </td>
