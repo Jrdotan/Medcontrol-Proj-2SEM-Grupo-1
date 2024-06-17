@@ -34,6 +34,8 @@ class PacienteQuerys extends medcontrol_db
                     telefone 
                 FROM 
                     paciente
+                ORDER BY
+                    date_ini DESC
                 LIMIT $offset, :records_per_page
             ");
             $result->bindParam(':records_per_page', $this->records_per_page, PDO::PARAM_INT);
@@ -140,7 +142,8 @@ class PacienteQuerys extends medcontrol_db
             $result = $this->connect()->prepare("
                 SELECT
                     po.ID,
-                    pe.nome_completo, 
+                    pe.nome_completo,
+                    ds.ID as doencaIDs, 
                     ds.nome as doenca, 
                     po.status_diagnostico, 
                     CASE 
@@ -288,4 +291,45 @@ class PacienteQuerys extends medcontrol_db
             return false;
         }
     }
+
+
+    public function registros_total_pessoas_prontuario($choice, $ID_paciente = 1001)
+    {
+        try {
+            if ($choice == 'pessoas') {
+                $query = "
+                    SELECT
+                        (SELECT COUNT(*) FROM paciente p) AS total_pessoas,
+                        (SELECT COUNT(*) FROM paciente p WHERE DATE(p.date_ini) >= CURDATE() - INTERVAL 1 WEEK AND DATE(p.date_ini) < CURDATE()) AS novos_registros
+                ";
+            } elseif ($choice == 'prontuario') {
+                $query = "
+                    SELECT
+                        (SELECT COUNT(*)
+                        FROM prontuario pr
+                        WHERE pr.ID_paciente = :id_paciente) AS total_prontuario,
+                        COUNT(pr.ID) AS novos_prontuario
+                    FROM 
+                        prontuario pr
+                    WHERE
+                        pr.ID_paciente = :id_paciente
+                        AND DATE(pr.data_diagnostico) >= CURDATE() - INTERVAL 1 WEEK 
+                        AND DATE(pr.data_diagnostico) <= CURDATE()
+                ";
+            }
+    
+            $result = $this->connect()->prepare($query);
+            if ($choice == 'prontuario') {
+                $result->bindParam(':id_paciente', $ID_paciente, PDO::PARAM_INT);
+            }
+            $result->execute();
+    
+            $prontuarios = $result->fetchAll(PDO::FETCH_ASSOC);
+            return $prontuarios ? $prontuarios : array();
+            
+        } catch (PDOException $error) {
+            echo "Erro na consulta: " . $error->getMessage();
+            return false;
+        }
+    }    
 }

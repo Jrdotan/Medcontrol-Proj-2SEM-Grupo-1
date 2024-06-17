@@ -1,11 +1,13 @@
 <?php
 session_start();
+require_once('auth.php');
 require_once('./classes/db_classes.php');
 require_once("./classes/Validador_registro_paciente.php");
 require_once("./classes/Gestor_registro_paciente.php");
 require_once('./includes/crud_medcontrol.php');
 include('./includes/paciente.php');
 include('./includes/paginacao.php');
+$person = new PacienteQuerys();
 $msg = salvar_paciente();
 ?>
 <!DOCTYPE html>
@@ -92,14 +94,21 @@ $msg = salvar_paciente();
                     <div class="card-body text-center shadow-button">
                         <h5 style="color: #30b27f;" class="card-title title-card-md">Pessoas Registradas</h5>
                         <div class="row">
-                            <div class="col-lg-6 mt-2">
-                                <p class="card-text data-number m-0">342.354.354</p>
-                                <p class="lb-grey m-0">Acumulado</p>
-                            </div>
-                            <div class="col-lg-6 mt-2">
-                                <p class="card-text data-number m-0">3.425</p>
-                                <p class="lb-grey m-0">Novos Registros</p>
-                            </div>
+                            <?php
+                            $totais = $person->registros_total_pessoas_prontuario('pessoas');
+                            foreach ($totais as $total) {
+                                echo "
+                                    <div class='col-lg-6 mt-2'>
+                                        <p class='card-text data-number m-0'>{$total['total_pessoas']}</p>
+                                        <p class='lb-grey m-0'>Acumulado</p>
+                                    </div>
+                                    <div class='col-lg-6 mt-2'>
+                                        <p class='card-text data-number m-0'>{$total['novos_registros']}</p>
+                                        <p class='lb-grey m-0'>Novos Registros</p>
+                                    </div>
+                                ";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -134,6 +143,7 @@ $msg = salvar_paciente();
                                     <option selected>Selecione o sexo</option required>    
                                         <option value="M">Masculino</option>
                                         <option value="F">Feminino</option>
+                                        <option value="Outro">Outro</option>
                                     </select>
                                 </div>
                                 <div class="mb-3 col-md-6">
@@ -210,7 +220,6 @@ $msg = salvar_paciente();
                 <tbody>
                     <?php
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $person = new PacienteQuerys();
                     $pacientes = $person->select_all_pacientes($page);
                     foreach ($pacientes as $paciente) {
                         echo "
@@ -229,7 +238,7 @@ $msg = salvar_paciente();
                                         data-id='{$paciente['ID']}' data-nome='{$paciente['nome_completo']}' 
                                         data-email='{$paciente['email']}' data-idade='{$paciente['idade']}' 
                                         data-sexo='{$paciente['sexo']}' data-cidade='{$paciente['cidade']}' 
-                                        data-estado='{$paciente['estado']}' data-CPF='{$paciente['CPF']}' 
+                                        data-estado='{$paciente['estado']}' data-cpf='{$paciente['CPF']}' 
                                         data-telefone='{$paciente['telefone']}'>
                                     <img src='../assets/img/icons/pen-to-square-solid.svg' width='20px' alt='EditarProntuario'>
                                 </button>
