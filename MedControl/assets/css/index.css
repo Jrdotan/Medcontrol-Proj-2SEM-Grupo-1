@@ -106,6 +106,15 @@ body{
     color: white;
 }
 
+.titulosGraficos{
+    font-size: 18px;
+    line-height: 24px;
+    padding: 8px 10px;
+    font-weight: bold;
+    letter-spacing: -0.84px;
+    color: black;
+}
+
 @media screen and (max-width: 400px) {
     
 }

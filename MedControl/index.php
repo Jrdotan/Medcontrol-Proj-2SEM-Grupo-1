@@ -233,14 +233,17 @@ $_SESSION['filterCid'] = $_GET['filterCid'];
             </div>
         </div>
         <div class="card">
+            <span class="titulosGraficos">Casos confirmados por semana Epidemiológica de notificação</span>
             <div class="card-body shadow-button" id="casosConfirmadoX"></div>
         </div>
         <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
         <div class="row pt-3 justify-content-between m-0">
             <div class="card col-md-6 p-0 mt-3 size-card">
+            <span class="titulosGraficos">Casos confirmados por semana Epidemiológica de notificação Local</span>
                 <div class="card-body" id="casosConfirmadoLinhas"></div>
             </div>
             <div class="card col-md-6 p-0 mt-3 size-card">
+                <span class="titulosGraficos">Casos confirmados por município</span>
                 <div class="card-body chartMap">
                     <div class="col-md-6" id="casosConfirmadoMapa"></div>
                 </div>
@@ -253,14 +256,17 @@ $_SESSION['filterCid'] = $_GET['filterCid'];
             </div>
         </div>
         <div class="card">
+        <span class="titulosGraficos">Casos suspeitos por semana Epidemiológica de notificação</span>
             <div class="card-body shadow-button" id="casosSuspeitosX"></div>
         </div>
         <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
         <div class="row pt-3 justify-content-between m-0">
             <div class="card col-md-6 p-0 mt-3 size-card">
+                <span class="titulosGraficos">Casos suspeitos por semana Epidemiológica de notificação Local</span>
                 <div class="card-body" id="casosSuspeitosLinhas"></div>
             </div>
             <div class="card col-md-6 p-0 mt-3 size-card">
+            <span class="titulosGraficos">Casos suspeitos por município</span>
                 <div class="card-body chartMap">
                     <div class="col-md-6" id="casosSuspeitosMapa"></div>
                 </div>
@@ -273,14 +279,17 @@ $_SESSION['filterCid'] = $_GET['filterCid'];
             </div>
         </div>
         <div class="card">
+            <span class="titulosGraficos">Casos óbitos confirmados por semana Epidemiológica de notificação</span>
             <div class="card-body shadow-button" id="obitosConfirmadoX"></div>
         </div>
         <p class="lb-info m-0">Fonte: Vozes da minha cabeça. Leme, 2024</p>
         <div class="row pt-3 justify-content-between m-0">
             <div class="card col-md-6 p-0 mt-3 size-card">
+                <span class="titulosGraficos">Casos óbitos confirmados por semana Epidemiológica de notificação Local</span>
                 <div class="card-body" id="obitosConfirmadoLinhas"></div>
             </div>
             <div class="card col-md-6 p-0 mt-3 size-card">
+            <span class="titulosGraficos">Óbitos confirmados por município</span>
                 <div class="card-body chartMap">
                     <div class="col-md-6" id="obitosConfirmadoMapa"></div>
                 </div>
