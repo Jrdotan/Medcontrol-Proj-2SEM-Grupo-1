@@ -22,21 +22,7 @@ class PacienteQuerys extends medcontrol_db
         try {
             $offset = ($page - 1) * $this->records_per_page;
             $result = $this->connect()->prepare("
-                SELECT 
-                    ID, 
-                    nome_completo, 
-                    idade, 
-                    sexo, 
-                    cidade, 
-                    estado, 
-                    CPF, 
-                    email, 
-                    telefone 
-                FROM 
-                    paciente
-                ORDER BY
-                    date_ini DESC
-                LIMIT $offset, :records_per_page
+                call select_all_pacientes($offset, :records_per_page)
             ");
             $result->bindParam(':records_per_page', $this->records_per_page, PDO::PARAM_INT);
             $result->execute();
